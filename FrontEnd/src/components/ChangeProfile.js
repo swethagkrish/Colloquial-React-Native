@@ -23,15 +23,15 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     position: "absolute",
-    color: "rgba(128,128,128,1)",
+    color: "rgba(0,107,166,1)",
     fontSize: 52
   },
   icon4: {
-    top: 0,
-    left: 11,
+    top: 6,
+    left: 13,
     position: "absolute",
-    color: "rgba(128,128,128,1)",
-    fontSize: 40
+    color: "rgba(0,107,166,1)",
+    fontSize: 35
   },
   icon2Stack: {
     width: 52,

@@ -11,11 +11,11 @@ import Filter from "./src/screens/Filter";
 import FilteredMedia from "./src/screens/FilteredMedia";
 import SelectedMedia from "./src/screens/SelectedMedia";
 import WriteReview from "./src/screens/WriteReview";
-import Untitled from "./src/screens/Untitled";
-import Untitled1 from "./src/screens/Untitled1";
 import ChatScreen from "./src/screens/ChatScreen";
-import Untitled2 from "./src/screens/Untitled2";
-import Untitled3 from "./src/screens/Untitled3";
+import Bookmarks from "./src/screens/Bookmarks";
+import Profile from "./src/screens/Profile";
+import Contacts from "./src/screens/Contacts";
+import Review from "./src/screens/Review";
 
 const DrawerNavigation = createDrawerNavigator({
   SelectLanguage: SelectLanguage,
@@ -24,11 +24,11 @@ const DrawerNavigation = createDrawerNavigator({
   FilteredMedia: FilteredMedia,
   SelectedMedia: SelectedMedia,
   WriteReview: WriteReview,
-  Untitled: Untitled,
-  Untitled1: Untitled1,
   ChatScreen: ChatScreen,
-  Untitled2: Untitled2,
-  Untitled3: Untitled3
+  Bookmarks: Bookmarks,
+  Profile: Profile,
+  Contacts: Contacts,
+  Review: Review
 });
 
 const StackNavigation = createStackNavigator(
@@ -42,11 +42,11 @@ const StackNavigation = createStackNavigator(
     FilteredMedia: FilteredMedia,
     SelectedMedia: SelectedMedia,
     WriteReview: WriteReview,
-    Untitled: Untitled,
-    Untitled1: Untitled1,
     ChatScreen: ChatScreen,
-    Untitled2: Untitled2,
-    Untitled3: Untitled3
+    Bookmarks: Bookmarks,
+    Profile: Profile,
+    Contacts: Contacts,
+    Review: Review
   },
   {
     headerMode: "none"

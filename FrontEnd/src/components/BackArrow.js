@@ -13,7 +13,7 @@ function BackArrow(props) {
 const styles = StyleSheet.create({
   container: {},
   icon: {
-    color: "rgba(249,105,0,1)",
+    color: "rgba(0,107,166,1)",
     fontSize: 70
   }
 });
