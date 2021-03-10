@@ -4,10 +4,10 @@ import { StyleSheet, View, Text } from "react-native";
 function Bookmark(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <View style={styles.rect3}>
+      <View style={styles.bookmarkBody}>
         <View style={styles.nameYearStack}>
           <Text style={styles.nameYear}>Name (Year)</Text>
-          <View style={styles.rect2}></View>
+          <View style={styles.image}></View>
         </View>
         <Text style={styles.summary}>Summary.....</Text>
       </View>
@@ -17,7 +17,7 @@ function Bookmark(props) {
 
 const styles = StyleSheet.create({
   container: {},
-  rect3: {
+  bookmarkBody: {
     width: 231,
     height: 210,
     backgroundColor: "rgba(255,134,0,1)",
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center"
   },
-  rect2: {
+  image: {
     top: 26,
     left: 0,
     width: 200,

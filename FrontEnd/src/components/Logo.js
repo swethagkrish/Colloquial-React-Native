@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
+import Svg, { Ellipse } from "react-native-svg";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import EntypoIcon from "react-native-vector-icons/Entypo";
@@ -8,7 +9,18 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 function Logo(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <View style={styles.earthStack}>
+      <View style={styles.backgroundStack}>
+        <Svg viewBox="0 0 57 61.5" style={styles.background}>
+          <Ellipse
+            stroke="rgba(230, 230, 230,1)"
+            strokeWidth={0}
+            fill="rgba(27,6,94,1)"
+            cx={29}
+            cy={31}
+            rx={29}
+            ry={31}
+          ></Ellipse>
+        </Svg>
         <IoniconsIcon name="md-globe" style={styles.earth}></IoniconsIcon>
         <MaterialCommunityIconsIcon
           name="television-classic"
@@ -19,7 +31,7 @@ function Logo(props) {
           name="video-vintage"
           style={styles.movie}
         ></MaterialCommunityIconsIcon>
-        <FontAwesomeIcon name="music" style={styles.icon10}></FontAwesomeIcon>
+        <FontAwesomeIcon name="music" style={styles.music}></FontAwesomeIcon>
       </View>
     </View>
   );
@@ -27,6 +39,13 @@ function Logo(props) {
 
 const styles = StyleSheet.create({
   container: {},
+  background: {
+    top: 10,
+    left: 2,
+    width: 55,
+    height: 56,
+    position: "absolute"
+  },
   earth: {
     position: "absolute",
     color: "rgba(255,134,0,1)",
@@ -55,14 +74,14 @@ const styles = StyleSheet.create({
     color: "rgba(217,240,255,1)",
     fontSize: 18
   },
-  icon10: {
+  music: {
     top: 43,
     left: 22,
     position: "absolute",
     color: "rgba(217,240,255,1)",
     fontSize: 16
   },
-  earthStack: {
+  backgroundStack: {
     width: 57,
     height: 76
   }

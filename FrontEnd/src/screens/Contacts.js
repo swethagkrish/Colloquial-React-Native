@@ -9,7 +9,7 @@ function Contacts(props) {
   return (
     <View style={styles.container}>
       <Homebar style={styles.homebar}></Homebar>
-      <Text style={styles.contacts}>Contacts</Text>
+      <Text style={styles.text}>Contacts</Text>
       <View style={styles.group}>
         <View style={styles.profilePic3Row}>
           <ProfilePic style={styles.profilePic3}></ProfilePic>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginTop: 675,
     alignSelf: "center"
   },
-  contacts: {
+  text: {
     fontFamily: "open-sans-800",
     color: "rgba(27,6,94,1)",
     height: 60,

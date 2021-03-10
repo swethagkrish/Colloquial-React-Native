@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   chat: {
     color: "rgba(255,134,0,1)",
     fontSize: 40,
-    width: 32,
+    width: 33,
     height: 44,
     marginLeft: 26,
     marginTop: 3
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     height: 40,
     width: 40,
-    marginLeft: 117,
+    marginLeft: 116,
     marginTop: 2
   },
   profile: {

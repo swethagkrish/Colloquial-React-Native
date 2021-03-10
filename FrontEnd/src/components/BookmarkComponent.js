@@ -6,8 +6,8 @@ import Bookmark from "./Bookmark";
 function BookmarkComponent(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <View style={styles.iconRow}>
-        <Icon name="cancel" style={styles.icon}></Icon>
+      <View style={styles.deleteIconRow}>
+        <Icon name="cancel" style={styles.deleteIcon}></Icon>
         <Bookmark style={styles.bookmark}></Bookmark>
       </View>
     </View>
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row"
   },
-  icon: {
+  deleteIcon: {
     color: "rgba(0,107,166,1)",
     fontSize: 40,
     marginTop: 65
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     height: 210,
     marginLeft: 6
   },
-  iconRow: {
+  deleteIconRow: {
     height: 210,
     flexDirection: "row",
     flex: 1

@@ -6,12 +6,12 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 function ChangeProfile(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <View style={styles.icon2Stack}>
+      <View style={styles.arrowStack}>
         <SimpleLineIconsIcon
           name="reload"
-          style={styles.icon2}
+          style={styles.arrow}
         ></SimpleLineIconsIcon>
-        <IoniconsIcon name="md-person" style={styles.icon4}></IoniconsIcon>
+        <IoniconsIcon name="md-person" style={styles.profile}></IoniconsIcon>
       </View>
     </View>
   );
@@ -19,21 +19,21 @@ function ChangeProfile(props) {
 
 const styles = StyleSheet.create({
   container: {},
-  icon2: {
+  arrow: {
     top: 0,
     left: 0,
     position: "absolute",
     color: "rgba(0,107,166,1)",
     fontSize: 52
   },
-  icon4: {
+  profile: {
     top: 6,
     left: 13,
     position: "absolute",
     color: "rgba(0,107,166,1)",
     fontSize: 35
   },
-  icon2Stack: {
+  arrowStack: {
     width: 52,
     height: 58
   }
