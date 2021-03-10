@@ -54,5 +54,45 @@ export default StyleSheet.create({
         color: "#788eec",
         fontWeight: "bold",
         fontSize: 16
-    }
+    },
+    container1: {},
+    earth: {
+        position: "absolute",
+        color: "rgba(255,134,0,1)",
+        fontSize: 70,
+        left: 0,
+        top: 0
+    },
+    tV: {
+        top: 23,
+        left: 38,
+        position: "absolute",
+        color: "rgba(217,240,255,1)",
+        fontSize: 19
+    },
+    book: {
+        top: 7,
+        left: 20,
+        position: "absolute",
+        color: "rgba(217,240,255,1)",
+        fontSize: 18
+    },
+    movie: {
+        top: 25,
+        left: 2,
+        position: "absolute",
+        color: "rgba(217,240,255,1)",
+        fontSize: 18
+    },
+    icon10: {
+        top: 43,
+        left: 22,
+        position: "absolute",
+        color: "rgba(217,240,255,1)",
+        fontSize: 16
+    },
+    earthStack: {
+        width: 57,
+        height: 76
+  }
 })

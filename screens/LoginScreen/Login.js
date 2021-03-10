@@ -3,6 +3,10 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import { login, firestore } from '../../components/Firebase/method'
+import IoniconsIcon from 'react-native-ionicons';
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import EntypoIcon from "react-native-vector-icons/Entypo";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 export default function Login({navigation}) {
     const [email, setEmail] = useState('')
@@ -42,10 +46,21 @@ export default function Login({navigation}) {
             <KeyboardAwareScrollView
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always">
-                <Image
-                    style={styles.logo}
-                    source={require('../../assets/logo.png')}
-                />
+                <View style={styles.container}>
+                    <View style={styles.earthStack}>
+                        <IoniconsIcon name="md-globe" style={styles.earth}></IoniconsIcon>
+                        <MaterialCommunityIconsIcon
+                            name="television-classic"
+                            style={styles.tV}
+                        ></MaterialCommunityIconsIcon>
+                        <EntypoIcon name="book" style={styles.book}></EntypoIcon>
+                        <MaterialCommunityIconsIcon
+                            name="video-vintage"
+                            style={styles.movie}
+                        ></MaterialCommunityIconsIcon>
+                        <FontAwesomeIcon name="music" style={styles.icon10}></FontAwesomeIcon>
+                    </View>
+                </View>
                 <TextInput
                     style={styles.input}
                     placeholder='E-mail'

@@ -18,6 +18,7 @@ export default function Navigate() {
       try {
         await (authUser ? setUser(authUser) : setUser(null));
         setIsLoading(false);
+        console.log('Hi')
       } catch (error) {
         console.log(error);
       }
