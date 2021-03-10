@@ -9,7 +9,7 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState('')
 
     const onFooterLinkPress = () => {
-        navigation.navigate('SignUp')
+        navigation.navigate('Register')
     }
 
     const onLoginPress = () => {
@@ -22,11 +22,11 @@ export default function Login({navigation}) {
                     .get()
                     .then(firestoreDocument => {
                         if (!firestoreDocument.exists) {
-                            alert("User does not exist anymore.")
+                            alert("User does not exist")
                             return;
                         }
                         const user = firestoreDocument.data()
-                        navigation.navigate('Home', {user: user})
+                        navigation.navigate('Home')
                     })
                     .catch(error => {
                         alert(error)

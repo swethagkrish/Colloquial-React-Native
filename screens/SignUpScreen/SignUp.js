@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import DataPicker from 'react-native-datepicker';
 import styles from './styles';
 import { signUp, firestore } from '../../components/Firebase/method'
+import DatePicker from 'react-native-datepicker';
 
 export default function SignUp({navigation}) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [date, setDate] = useState('')
 
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
@@ -25,15 +28,18 @@ export default function SignUp({navigation}) {
                 const uid = response.user.uid
                 const data = {
                     id: uid,
-                    email,
                     fullName,
+                    birthdate,
+                    email,
+                    language: [],
+                    avatar,
                 };
                 const usersRef = firestore.collection('users')
                 usersRef
                     .doc(uid)
                     .set(data)
                     .then(() => {
-                        navigation.navigate('Home', {user: data})
+                        navigation.navigate('Welcome')
                     })
                     .catch((error) => {
                         alert(error)
@@ -62,6 +68,31 @@ export default function SignUp({navigation}) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+                <View>
+                    <Text>Your birthdate</Text>
+                    <DatePicker
+                        date={date} //initial date from state
+                        mode="date" //The enum of date, datetime and time
+                        placeholder="Select date"
+                        format="MM-DD-YYYY"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                                //display: 'none',
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                marginLeft: 0,
+                            },
+                            dateInput: {
+                                marginLeft: 36,
+                            },
+                        }}
+                        onDateChange={(date) => {
+                        setDate(date);
+                        }} />
+                </View>
                 <TextInput
                     style={styles.input}
                     placeholder='E-mail'
