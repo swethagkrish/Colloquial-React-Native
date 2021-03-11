@@ -11,7 +11,7 @@ export default function SignUp({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [date, setDate] = useState('')
+    const [birthdate, setDate] = useState('')
 
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
@@ -20,6 +20,10 @@ export default function SignUp({navigation}) {
     const onSignUpPress = () => {
         if (password !== confirmPassword) {
             alert("Passwords don't match.")
+            return
+        }
+        if (birthdate == '') {
+            alert("Please choose a date")
             return
         }
     
@@ -71,7 +75,7 @@ export default function SignUp({navigation}) {
                 <View>
                     <Text>Your birthdate</Text>
                     <DatePicker
-                        date={date} //initial date from state
+                        date={birthdate} //initial date from state
                         mode="date" //The enum of date, datetime and time
                         placeholder="Select date"
                         format="MM-DD-YYYY"
@@ -89,8 +93,8 @@ export default function SignUp({navigation}) {
                                 marginLeft: 36,
                             },
                         }}
-                        onDateChange={(date) => {
-                        setDate(date);
+                        onDateChange={(birthdate) => {
+                        setDate(birthdate);
                         }} />
                 </View>
                 <TextInput

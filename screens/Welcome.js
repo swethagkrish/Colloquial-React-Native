@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { Card } from 'react-native-elements';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Bookmark from "../components/stuff/Bookmark";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
@@ -9,6 +10,19 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 
 function Welcome({ navigation }) {
   return (
+    /*<View style= { 'backgroundColor: black '}>
+      <Text>Welcome</Text>
+      <Text>Notifications</Text>
+      <Text>Spotlighted Media of the Day</Text>
+      <Card>
+        <Card.Title>Media Name</Card.Title>
+        <Card.Divider/>
+        <Card.Image>
+          
+        </Card.Image>
+      </Card>
+      <Text>You have no new notifications</Text>
+    </View>*/
     <View style={styles.container}>
       <View style={styles.notificationBody}>
         <View style={styles.body}>

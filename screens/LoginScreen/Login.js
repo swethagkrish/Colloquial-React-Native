@@ -47,19 +47,10 @@ export default function Login({navigation}) {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always">
                 <View style={styles.container}>
-                    <View style={styles.earthStack}>
-                        <IoniconsIcon name="md-globe" style={styles.earth}></IoniconsIcon>
-                        <MaterialCommunityIconsIcon
-                            name="television-classic"
-                            style={styles.tV}
-                        ></MaterialCommunityIconsIcon>
-                        <EntypoIcon name="book" style={styles.book}></EntypoIcon>
-                        <MaterialCommunityIconsIcon
-                            name="video-vintage"
-                            style={styles.movie}
-                        ></MaterialCommunityIconsIcon>
-                        <FontAwesomeIcon name="music" style={styles.icon10}></FontAwesomeIcon>
-                    </View>
+                    <Image
+                        style={styles.logo}
+                        source={require('../../assets/logo.png')}
+                    />
                 </View>
                 <TextInput
                     style={styles.input}

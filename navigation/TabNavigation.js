@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import Welcome from '../screens/Welcome'
 import Bookmarks from "../screens/Bookmarks"
 import SelectLanguage from "../screens/SelectLanguage"
@@ -51,23 +51,11 @@ const Tabs = () => {
                         
                         case "SelectLanguage":
                             return (
-                                <View style={styles.container}>
-                                    <View style={styles.earthStack}>
-                                        <IoniconsIcon name="md-globe" style={styles.earth}></IoniconsIcon>
-                                        <MaterialCommunityIconsIcon
-                                            name="television-classic"
-                                            style={styles.tV}
-                                        ></MaterialCommunityIconsIcon>
-                                        <EntypoIcon name="book" style={styles.book}></EntypoIcon>
-                                        <MaterialCommunityIconsIcon
-                                            name="video-vintage"
-                                            style={styles.movie}
-                                        ></MaterialCommunityIconsIcon>
-                                        <FontAwesomeIcon name="music" style={styles.icon10}></FontAwesomeIcon>
-                                    </View>
-                                </View>
+                                <Image
+                                    style={styles.logo}
+                                    source={require('../assets/logo.png')}
+                                />
                             )
-                        
                         
                         case 'Profile':
                             return (
@@ -103,6 +91,10 @@ const Tabs = () => {
 
 const styles = StyleSheet.create({
     container: {},
+    logo: {
+        width: 60,
+        height: 60,
+    },
     earth: {
       position: "absolute",
       color: "rgba(255,134,0,1)",
