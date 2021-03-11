@@ -1,19 +1,31 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Card } from 'react-native-elements';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Bookmark from "../components/stuff/Bookmark";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import { Ionicons } from '@expo/vector-icons';
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Homebar from "../components/stuff/Homebar";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import { ViewBase } from "react-native";
+import { Button } from "react-native-elements/dist/buttons/Button";
 
 function Welcome({ navigation }) {
+  const generate = () => {
+    navigation.navigate('SelectLanguage');
+  }
   return (
-    /*<View style= { 'backgroundColor: black '}>
+    <View style={styles.container}>
       <Text>Welcome</Text>
       <Text>Notifications</Text>
-      <Text>Spotlighted Media of the Day</Text>
+      <View>
+        <MaterialCommunityIconsIcon
+            name="spotlight"
+            style={styles.spotlightIcon}
+        ></MaterialCommunityIconsIcon>
+        <Text>Spotlighted Media of the Day</Text>
+      </View>
+      
       <Card>
         <Card.Title>Media Name</Card.Title>
         <Card.Divider/>
@@ -21,49 +33,11 @@ function Welcome({ navigation }) {
           
         </Card.Image>
       </Card>
-      <Text>You have no new notifications</Text>
-    </View>*/
-    <View style={styles.container}>
-      <View style={styles.notificationBody}>
-        <View style={styles.body}>
-          <View style={styles.notificationsStack}>
-            <Text style={styles.notifications}>Notifications</Text>
-            <MaterialCommunityIconsIcon
-              name="spotlight"
-              style={styles.spotlightIcon}
-            ></MaterialCommunityIconsIcon>
-            <Text style={styles.spotlightTitle}>
-              Spotlighted Media of the Day
-            </Text>
-          </View>
-          <Bookmark style={styles.bookmark}></Bookmark>
-          <View style={styles.chatNotif}>
-            <View style={styles.chatIconRow}>
-              <IoniconsIcon
-                name="md-chatboxes"
-                style={styles.chatIcon}
-              ></IoniconsIcon>
-              <Text style={styles.chatNotifications}>
-                # new messages {"\n"}# new friend requests
-              </Text>
-            </View>
-          </View>
-          <View style={styles.softwareNotif}>
-            <View style={styles.settingsIconRow}>
-              <FontAwesomeIcon
-                name="gear"
-                style={styles.settingsIcon}
-              ></FontAwesomeIcon>
-              <Text style={styles.softwareNotifications}>
-                No new software updates
-              </Text>
-            </View>
-          </View>
-        </View>
+      <View>
+        <Ionicons name="chatbox-sharp" size={50}></Ionicons>
+        <Text>You have no new notifications</Text>
       </View>
-      <Homebar style={styles.homebar}></Homebar>
-      <Text style={styles.text}>Welcome</Text>
-      <View style={styles.genRecButton}>
+      <TouchableOpacity onPress={generate}>
         <View style={styles.button}>
           <View style={styles.bookStackRow}>
             <View style={styles.bookStack}>
@@ -86,7 +60,7 @@ function Welcome({ navigation }) {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -119,9 +93,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   spotlightIcon: {
-    top: 52,
-    left: 0,
-    position: "absolute",
     color: "rgba(0,107,166,1)",
     fontSize: 40,
     height: 44,

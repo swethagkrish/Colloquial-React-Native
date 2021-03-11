@@ -6,11 +6,14 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import SimpleLineIconsIcon from "react-native-vector-icons/SimpleLineIcons";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import BackArrow from "../components/stuff/BackArrow";
+import {Entypo} from "@expo/vector-icons"
+
 //import Homebar from "../components/Homebar";
 
 function Filter(props) {
   return (
-    <View style={styles.container}>
+    <View></View>
+    /*<View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.filterBodyStack}>
         <View style={styles.filterBody}>
@@ -182,7 +185,7 @@ function Filter(props) {
         </View>
       </View>
       <Homebar style={styles.homebar}></Homebar>
-    </View>
+    </View>*/
   );
 }
 

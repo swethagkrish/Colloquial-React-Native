@@ -3,10 +3,6 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import { login, firestore } from '../../components/Firebase/method'
-import IoniconsIcon from 'react-native-ionicons';
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 export default function Login({navigation}) {
     const [email, setEmail] = useState('')

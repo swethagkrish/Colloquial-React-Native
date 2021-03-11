@@ -7,13 +7,9 @@ import SelectLanguage from "../screens/SelectLanguage"
 import Profile from '../screens/Profile'
 
 import { icons, COLORS } from "../components";
-import { Ionicons } from '@expo/vector-icons';
-import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-//import Chat from '../screens/Chat'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+
+import Chat from '../screens/Chat'
 
 const Tab = createBottomTabNavigator();
 
@@ -36,17 +32,12 @@ const Tabs = () => {
                     switch (route.name) {
                         case "Bookmark":
                             return (
-                                <MaterialIconsIcon
-                                    name="bookmark"
-                                    style={styles.bookmark}
-                                    ></MaterialIconsIcon>
+                                <MaterialIcons name="bookmark" size={40} color="#FF8600" />
                             )
 
                         case "Welcome":
                             return (
-                                <MaterialIconsIcon
-                                    name="notifications"
-                                    style={styles.notification}></MaterialIconsIcon>
+                                <MaterialIcons name="notifications" size={40} color="#FF8600" />
                             )
                         
                         case "SelectLanguage":
@@ -59,7 +50,12 @@ const Tabs = () => {
                         
                         case 'Profile':
                             return (
-                                <IoniconsIcon name="md-person" style={styles.profile}></IoniconsIcon>
+                                <Ionicons name="md-person" size={40} color="#FF8600"></Ionicons>
+                            )
+                        
+                        case 'Chat':
+                            return (
+                                <Ionicons name="chatbox-sharp" size={40} color="#FF8600"></Ionicons>
                             )
                     }
                 }
@@ -69,10 +65,10 @@ const Tabs = () => {
                 name="Welcome"
                 component={Welcome}
             />
-            {/*<Tab.Screen
+            <Tab.Screen
                 name="Chat"
                 component={Chat}
-            />*/}
+            />
             <Tab.Screen
                 name="SelectLanguage"
                 component={SelectLanguage}

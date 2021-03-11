@@ -1,10 +1,33 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import Homebar from "../components/stuff/Homebar";
 
-function SelectLanguage(props) {
+function SelectLanguage({ navigation }) {
+  const selectLanguage = () => {
+    navigation.navigate('Filter');
+  }
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={selectLanguage}>
+        <Image source={require('../assets/flags/germany.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={selectLanguage}>
+        <Image source={require('../assets/flags/france.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={selectLanguage}>
+        <Image source={require('../assets/flags/italy.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={selectLanguage}>
+        <Image source={require('../assets/flags/portugal.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={selectLanguage}>
+        <Image source={require('../assets/flags/spain.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={selectLanguage}>
+        <Image source={require('../assets/flags/netherlands.png')} />
+      </TouchableOpacity>
+    </View>
+    /*<View style={styles.container}>
       <Homebar style={styles.homebar}></Homebar>
       <Text style={styles.selectALanguage}>Select a Language</Text>
       <View style={styles.languageButtons}>
@@ -45,7 +68,7 @@ function SelectLanguage(props) {
           </View>
         </View>
       </View>
-    </View>
+    </View>*/
   );
 }
 
