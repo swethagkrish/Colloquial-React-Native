@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 675
   },
   selectALanguage: {
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 131,
     width: 360,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   german: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 24,
     marginTop: 85,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   italian: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 24,
     marginTop: 85,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   french: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 24,
     marginTop: 86,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   portuguese: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 28,
     width: 147,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   spanish: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 24,
     marginTop: 85,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   dutch: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     textAlign: "center",
     fontSize: 24,

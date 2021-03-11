@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     top: 1
   },
   category: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 33,
     width: 99,
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     top: 19,
     left: 55,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 27,
     width: 87,
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     height: 44
   },
   tvShows: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 25,
     width: 81,
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     width: 40
   },
   movies: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 20,
     width: 62,
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   music: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 22,
     width: 60,
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
     marginRight: 19
   },
   genre: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 27,
     width: 76,
@@ -435,7 +435,7 @@ const styles = StyleSheet.create({
     height: 44
   },
   action: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 22,
     width: 66,
@@ -478,7 +478,7 @@ const styles = StyleSheet.create({
     height: 44
   },
   comedy: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 22,
     width: 66,
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
     width: 40
   },
   drama: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 22,
     width: 66,
@@ -570,7 +570,7 @@ const styles = StyleSheet.create({
     width: 40
   },
   horror: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     fontSize: 16,
     marginLeft: 1,
@@ -617,7 +617,7 @@ const styles = StyleSheet.create({
     width: 40
   },
   thriller: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 22,
     width: 66,
@@ -667,7 +667,7 @@ const styles = StyleSheet.create({
     top: 21,
     left: 53,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 22,
     width: 94,
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   sort: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 18,
     marginTop: 14,
@@ -724,7 +724,7 @@ const styles = StyleSheet.create({
     top: 13,
     left: 55,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 51,
     width: 66,
@@ -768,7 +768,7 @@ const styles = StyleSheet.create({
     top: 20,
     left: 49,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(255,255,255,1)",
     height: 24,
     width: 101
@@ -788,7 +788,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     position: "absolute",
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(249,105,0,1)",
     height: 40,
     width: 352,
@@ -803,7 +803,7 @@ const styles = StyleSheet.create({
     top: 10,
     left: 0,
     position: "absolute",
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 111,
     width: 352,
@@ -846,7 +846,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   filterMedia: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 57,
     width: 102,

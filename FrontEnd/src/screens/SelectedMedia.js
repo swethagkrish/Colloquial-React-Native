@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginLeft: 29
   },
   viewRating: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 60,
     width: 71,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     marginLeft: 30
   },
   writeReview: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 60,
     width: 77,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     marginLeft: 27
   },
   save: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 30,
     width: 47,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     marginLeft: 28
   },
   summary: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 45,
     width: 129,
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     marginLeft: 104
   },
   rating: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 39,
     width: 82,
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     top: 15,
     left: 43,
     position: "absolute",
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 46,
     width: 291,

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 8,
     position: "absolute",
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(255,255,255,1)",
     height: 32,
     width: 184,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   summary: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "rgba(255,255,255,1)",
     height: 78,
     width: 200,

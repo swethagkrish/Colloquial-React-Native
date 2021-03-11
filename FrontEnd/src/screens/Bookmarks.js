@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   bookmarkTitle: {
     top: 0,
     position: "absolute",
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 90,
     width: 300,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 70
   },
   sortBy: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 40,
     width: 97,

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     height: 76
   },
   text: {
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 126,
     width: 239,

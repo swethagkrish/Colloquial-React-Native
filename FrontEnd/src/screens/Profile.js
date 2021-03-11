@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     top: 71,
     left: 0,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 55,
     width: 104,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     marginLeft: 21
   },
   deleteAccount: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 55,
     width: 83,
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     marginLeft: 30
   },
   changeLevels: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 45,
     width: 94,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   email: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 24,
     width: 165,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   langLevels: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 20,
     width: 127,
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   birthday: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 24,
     width: 165,
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
     top: 91,
     left: 0,
     position: "absolute",
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 61,
     width: 170,

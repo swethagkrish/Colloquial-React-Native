@@ -96,14 +96,14 @@ const styles = StyleSheet.create({
     marginLeft: 87
   },
   name: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 24,
     textAlign: "center",
     marginLeft: 39
   },
   nameOfMedia: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 33,
     width: 149,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginLeft: 14
   },
   rating: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     fontSize: 24,
     textAlign: "center",
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     top: 7,
     left: 26,
     position: "absolute",
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     fontSize: 20,
     width: 242,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     top: 34,
     left: 0,
     position: "absolute",
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 109,
     width: 326,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 105,
     position: "absolute",
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 36,
     width: 189,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     marginTop: 143
   },
   reviewInput: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     fontSize: 20,
     width: 250,
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   review: {
     top: 0,
     position: "absolute",
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 68,
     width: 267,
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     width: 40
   },
   saveReview: {
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 24,
     width: 138,

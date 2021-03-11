@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     height: 76
   },
   userReviews: {
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 133,
     width: 230,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     marginRight: 51
   },
   mediaName: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(255,134,0,1)",
     height: 41,
     width: 169,

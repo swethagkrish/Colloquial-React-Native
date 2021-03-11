@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0
   },
   review: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 34,
     width: 195,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     marginLeft: 17
   },
   rating: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 26,
     width: 92,

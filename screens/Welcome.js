@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 11,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(249,105,0,1)",
     height: 65,
     width: 285,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     top: 65,
     left: 37,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 62,
     width: 231,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   chatNotifications: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 62,
     width: 231,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   softwareNotifications: {
-    fontFamily: "open-sans-regular",
+    fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 60,
     width: 215,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     marginLeft: 1
   },
   text: {
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 65,
     width: 332,
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
     top: 4,
     left: 15,
     position: "absolute",
-    fontFamily: "open-sans-700",
+    fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 63,
     width: 258,

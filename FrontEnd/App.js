@@ -73,10 +73,10 @@ async function loadResourcesAsync() {
   await Promise.all([
     Font.loadAsync({
       "roboto-regular": require("./src/assets/fonts/roboto-regular.ttf"),
-      "open-sans-800": require("./src/assets/fonts/roboto-regular.ttf"),
-      "open-sans-600": require("./src/assets/fonts/roboto-regular.ttf"),
-      "open-sans-regular": require("./src/assets/fonts/roboto-regular.ttf"),
-      "open-sans-700": require("./src/assets/fonts/roboto-regular.ttf")
+      "OpenSans_800ExtraBold": require("./src/assets/fonts/roboto-regular.ttf"),
+      "OpenSans_600SemiBold": require("./src/assets/fonts/roboto-regular.ttf"),
+      "OpenSans_400Regular": require("./src/assets/fonts/roboto-regular.ttf"),
+      "OpenSans_700Bold": require("./src/assets/fonts/roboto-regular.ttf")
     })
   ]);
 }

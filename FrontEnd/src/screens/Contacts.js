@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   text: {
-    fontFamily: "open-sans-800",
+    fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 60,
     width: 299,

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginLeft: 9
   },
   nameYear: {
-    fontFamily: "open-sans-600",
+    fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
     height: 28,
     width: 136,
