@@ -1,12 +1,67 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text ,Image, TouchableOpacity, FlatList } from "react-native";
 //import Homebar from "../components/Homebar";
 //import BookmarkComponent from "../components/BookmarkComponent";
 
-function Bookmarks(props) {
-  return (
+function Bookmarks({ navigation }) {
+  const bookmarks = () => {
+    navigation.navigate('SelectedMedia');
+  }
+  const data = [
+    {
+      name: "Germany",
+      img: require("../assets/flags/germany.png")
+    },
+    {
+      name: "Portugal",
+      img: require("../assets/flags/portugal.png")
+    }, 
+    {
+      name: "France",
+      img: require("../assets/flags/france.png")
+    }, 
+    {
+      name: "Spain",
+      img: require("../assets/flags/spain.png")
+    }, 
+    {
+      name: "Italy",
+      img: require('../assets/flags/italy.png')
+    }, 
+    {
+      name: "Netherlands",
+      img: require("../assets/flags/Netherlands.png")
+    }
+  ]
+
+    const renderItem = ({ item }) => (
+      <TouchableOpacity style={styles.languageButton} onPress={selectLanguage}>
+        <Image
+          style={{ width: 50, height: 40}}
+          source={item.img}
+        />
+      </TouchableOpacity>
+    );
+      return (
+        <View style={{ flex: 1 }}>
+          <View style={styles.container}>
+              <Text style={styles.bookmarkTitle}>Bookmarks</Text>
+          </View> 
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.name}
+            numColumns={3}
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingVertical: 5 }}
+          />
+        </View>
+      );
+    }
+  
+  /*return (
     <View style={styles.container}>
-      {/*<Homebar style={styles.homebar}></Homebar>*/}
+      {<Homebar style={styles.homebar}></Homebar>}
       <View style={styles.bookmarkTitleStack}>
         <Text style={styles.bookmarkTitle}>Bookmarks</Text>
         <View style={styles.bookmarkBody}>
@@ -23,175 +78,61 @@ function Bookmarks(props) {
               <View style={styles.iTL}></View>
             </View>
             <Text style={styles.ger}>GER</Text>
-            {/*<BookmarkComponent
+            {<BookmarkComponent
               style={styles.bookmarkComponent}
-            ></BookmarkComponent>*/}
+            ></BookmarkComponent>}
           </View>
         </View>
       </View>
     </View>
   );
-}
+}*/
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    height: 70,
+    alignItems: "center"
   },
   homebar: {
-    width: 333,
-    height: 54,
+    width: 360,
+    height: 65,
     marginTop: 675
   },
+  buttonContainter: {
+    width: 327, 
+    height: 700,
+    alignItems: "center"
+  },
+  languageButton: {
+    flex: 1, 
+    marginHorizontal: 5, 
+    marginBottom: 5,
+    backgroundColor: "rgba(255,134,0,1)",
+    borderRadius: 21,
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    width: 81,
+    height: 65, 
+    alignItems: "center",
+    justifyContent: "center"
+  },
   bookmarkTitle: {
-    top: 0,
-    position: "absolute",
     fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
-    height: 90,
-    width: 300,
     fontSize: 48,
-    left: 12
+    alignItems: "center",
+    justifyContent: "center"
   },
-  bookmarkBody: {
-    top: 75,
-    left: 0,
-    width: 315,
-    height: 550,
-    position: "absolute"
-  },
-  body: {
-    width: 315,
-    height: 550,
-    backgroundColor: "rgba(217,240,255,0.75)",
-    borderRadius: 70
-  },
-  sortBy: {
+  languageLabel: {
     fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
-    height: 40,
-    width: 97,
     fontSize: 24,
-    marginTop: 14,
-    marginLeft: 113
-  },
-  gER: {
-    width: 81,
-    height: 65,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 21,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  fRA: {
-    width: 81,
-    height: 65,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 21,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    marginLeft: 22
-  },
-  eSP: {
-    width: 81,
-    height: 65,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 21,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    marginLeft: 22
-  },
-  gERRow: {
-    height: 65,
-    flexDirection: "row",
-    marginLeft: 14,
-    marginRight: 14
-  },
-  pOR: {
-    width: 81,
-    height: 65,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 21,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  dUT: {
-    width: 81,
-    height: 65,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 21,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    marginLeft: 22
-  },
-  iTL: {
-    width: 81,
-    height: 65,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 21,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    marginLeft: 22
-  },
-  pORRow: {
-    height: 65,
-    flexDirection: "row",
-    marginTop: 19,
-    marginLeft: 14,
-    marginRight: 14
-  },
-  ger: {
-    fontFamily: "roboto-regular",
-    color: "#121212",
-    height: 35,
-    width: 48,
-    marginTop: 33,
-    marginLeft: 137
-  },
-  bookmarkComponent: {
-    height: 210,
-    width: 277
-  },
-  bookmarkTitleStack: {
-    width: 315,
-    height: 625,
-    marginTop: -705,
-    marginLeft: 18
   }
 });
 

@@ -16,27 +16,29 @@ function Welcome({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <Text>Welcome</Text>
-      <Text>Notifications</Text>
-      <View>
-        <MaterialCommunityIconsIcon
-            name="spotlight"
-            style={styles.spotlightIcon}
-        ></MaterialCommunityIconsIcon>
-        <Text>Spotlighted Media of the Day</Text>
+      <Text style = {styles.text}>Welcome</Text>
+      <View style = {styles.notificationBody}>
+        <Text style = {styles.notifications} >Notifications</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%'}}>
+          <MaterialCommunityIconsIcon
+              name="spotlight"
+              style={styles.spotlightIcon}
+          ></MaterialCommunityIconsIcon>
+          <Text style = {styles.spotlightTitle}>Spotlighted Media of the Day</Text>
+        </View>
+        <Card containerStyle = {styles.bookmark}>
+          <Card.Title>Media Name</Card.Title>
+          <Card.Divider/>
+          <Card.Image>
+            
+          </Card.Image>
+        </Card>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%',alignSelf: 'flex-start' }}>
+          <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
+          <Text style = {styles.chatNotifications}>  no new notifications</Text>
+        </View>
       </View>
-      
-      <Card>
-        <Card.Title>Media Name</Card.Title>
-        <Card.Divider/>
-        <Card.Image>
-          
-        </Card.Image>
-      </Card>
-      <View>
-        <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
-        <Text>You have no new notifications</Text>
-      </View>
+
       <TouchableOpacity onPress={generate}>
         <View style={styles.button}>
           <View style={styles.bookStackRow}>
@@ -67,13 +69,17 @@ function Welcome({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   notificationBody: {
-    width: 315,
-    height: 534,
-    marginTop: 99,
-    marginLeft: 23
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 70,
+    opacity: 0.75,
+    width: 320,
+    height: 500,
+    alignItems: "center",
+    alignSelf: "center",
+    marginBottom: 20
   },
   body: {
     width: 315,
@@ -82,13 +88,8 @@ const styles = StyleSheet.create({
     borderRadius: 70
   },
   notifications: {
-    top: 0,
-    left: 11,
-    position: "absolute",
     fontFamily: "OpenSans_700Bold",
     color: "rgba(249,105,0,1)",
-    height: 65,
-    width: 285,
     fontSize: 36,
     textAlign: "center"
   },
@@ -99,13 +100,8 @@ const styles = StyleSheet.create({
     width: 40
   },
   spotlightTitle: {
-    top: 65,
-    left: 37,
-    position: "absolute",
     fontFamily: "OpenSans_700Bold",
     color: "#121212",
-    height: 62,
-    width: 231,
     fontSize: 24,
     textAlign: "center"
   },
@@ -118,8 +114,8 @@ const styles = StyleSheet.create({
   bookmark: {
     height: 210,
     width: 231,
-    marginTop: 12,
-    marginLeft: 41
+    borderRadius: 43, 
+    color: 'FF8600'
   },
   chatNotif: {
     width: 292,
@@ -135,16 +131,8 @@ const styles = StyleSheet.create({
   chatNotifications: {
     fontFamily: "OpenSans_400Regular",
     color: "#121212",
-    height: 62,
-    width: 231,
     fontSize: 18,
-    marginLeft: 29
-  },
-  chatIconRow: {
-    height: 62,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: -1
+    marginTop: 10,
   },
   softwareNotif: {
     width: 277,
@@ -152,24 +140,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 14,
     marginLeft: 7
-  },
-  settingsIcon: {
-    color: "rgba(0,107,166,1)",
-    fontSize: 40
-  },
-  softwareNotifications: {
-    fontFamily: "OpenSans_400Regular",
-    color: "#121212",
-    height: 60,
-    width: 215,
-    fontSize: 18,
-    marginLeft: 28,
-    marginTop: 10
-  },
-  settingsIconRow: {
-    height: 70,
-    flexDirection: "row",
-    flex: 1
   },
   homebar: {
     height: 65,
@@ -184,8 +154,7 @@ const styles = StyleSheet.create({
     width: 332,
     textAlign: "center",
     fontSize: 48,
-    marginTop: -776,
-    marginLeft: 14
+    alignSelf: "center"
   },
   genRecButton: {
     width: 325,
@@ -198,6 +167,7 @@ const styles = StyleSheet.create({
     height: 68,
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 82,
+    marginTop: 20,
     shadowColor: "rgba(0,0,0,1)",
     shadowOffset: {
       width: 3,
@@ -206,7 +176,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0,
-    flexDirection: "row"
+    flex: 1,
+    justifyContent: "center"
   },
   book: {
     top: 0,

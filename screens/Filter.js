@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, TouchableOpacity, TouchableHighlight } from "react-native";
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity} from "react-native";
 import { Entypo } from "@expo/vector-icons"
 import { TouchableHighlight } from "react-native-gesture-handler";
 

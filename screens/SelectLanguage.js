@@ -21,23 +21,23 @@ function SelectLanguage({ navigation }) {
       img: require("../assets/flags/france.png")
     }, 
     {
-      name: "Netherlands",
-      img: require("../assets/flags/netherlands.png")
+      name: "Spain",
+      img: require("../assets/flags/spain.png")
     }, 
     {
       name: "Italy",
       img: require('../assets/flags/italy.png')
     }, 
     {
-      name: "Spain",
-      img: require("../assets/flags/spain.png")
+      name: "Netherlands",
+      img: require("../assets/flags/Netherlands.png")
     }
   ]
 
     const renderItem = ({ item }) => (
-      <TouchableOpacity style={{ flex: 1, marginHorizontal: 20, marginBottom: 20 }} onPress={selectLanguage}>
+      <TouchableOpacity style={styles.languageButton} onPress={selectLanguage}>
         <Image
-          style={{ width: "100%", height: 140 }}
+          style={{ width: 100, height: 70}}
           source={item.img}
         />
         <Text style = {styles.languageLabel}>{item.name}</Text>
@@ -54,7 +54,7 @@ function SelectLanguage({ navigation }) {
             keyExtractor={item => item.name}
             numColumns={2}
             style={{ flex: 1 }}
-            contentContainerStyle={{ paddingVertical: 20 }}
+            contentContainerStyle={{ paddingVertical: 5 }}
           />
         </View>
       );
@@ -139,7 +139,7 @@ function SelectLanguage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 140,
+    height: 70,
     alignItems: "center"
   },
   homebar: {
@@ -147,14 +147,10 @@ const styles = StyleSheet.create({
     height: 65,
     marginTop: 675
   },
-  buttonContainter: {
-    width: 327, 
-    height: 700,
-    alignItems: "center"
-  },
   languageButton: {
-    flex: 1,
-    flexDirection: "row",
+    flex: 1, 
+    marginHorizontal: 20, 
+    marginBottom: 20,
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 44,
     shadowColor: "rgba(0,0,0,1)",
@@ -166,12 +162,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 0,
     width: 154,
-    height: 131
+    height: 131, 
+    alignItems: "center",
+    justifyContent: "center"
   },
   selectALanguage: {
     fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
-    fontSize: 48
+    fontSize: 48,
+    alignItems: "center",
+    justifyContent: "center"
   },
   languageLabel: {
     fontFamily: "OpenSans_600SemiBold",
