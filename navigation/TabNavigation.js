@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, View, Image } from "react-native";
 import Welcome from '../screens/Welcome'
 import Bookmarks from "../screens/Bookmarks"
-import SelectLanguage from "../screens/SelectLanguage"
+import MediaNavigation from './MediaNavigation'
 import Profile from '../screens/Profile'
 
 import { icons, COLORS } from "../components";
@@ -17,7 +17,7 @@ const tabOptions = {
     showLabel: false,
     style: {
         height: "10%",
-        backgroundColor: COLORS.black
+        backgroundColor: "#1B065E"
     }
 }
 
@@ -38,14 +38,6 @@ const Tabs = () => {
                         case "Welcome":
                             return (
                                 <MaterialIcons name="notifications" size={40} color="#FF8600" />
-                            )
-                        
-                        case "SelectLanguage":
-                            return (
-                                <Image
-                                    style={styles.logo}
-                                    source={require('../assets/logo.png')}
-                                />
                             )
                         
                         case 'Profile':
@@ -70,8 +62,16 @@ const Tabs = () => {
                 component={Chat}
             />
             <Tab.Screen
-                name="SelectLanguage"
-                component={SelectLanguage}
+                name="MediaNavigation"
+                options= {{tabBarIcon: () => {
+                    return (
+                        <Image
+                            style={styles.logo}
+                            source={require('../assets/logo.png')}
+                        />
+                    )
+                }}}
+                component={MediaNavigation}
             />
             <Tab.Screen
                 name="Bookmark"

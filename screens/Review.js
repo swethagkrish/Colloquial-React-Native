@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import ProfilePic from "../components/stuff/ProfilePic";
-import ReviewUpdated from "../components/stuff/ReviewUpdated";
-import ReviewComponent from "../components/stuff/ReviewComponent";
+//import ReviewUpdated from "../components/stuff/ReviewUpdated";
+//import ReviewComponent from "../components/stuff/ReviewComponent";
 import Homebar from "../components/stuff/Homebar";
 import BackArrow from "../components/stuff/BackArrow";
 

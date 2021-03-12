@@ -1,18 +1,55 @@
-import React, { Component } from "react";
-import { StyleSheet, View, StatusBar, Text } from "react-native";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import SimpleLineIconsIcon from "react-native-vector-icons/SimpleLineIcons";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import BackArrow from "../components/stuff/BackArrow";
-import {Entypo} from "@expo/vector-icons"
+import React, { Component, useState } from "react";
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity, TouchableHighlight } from "react-native";
+import { Entypo } from "@expo/vector-icons"
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 //import Homebar from "../components/Homebar";
 
-function Filter(props) {
+function Filter({ navigation }) {
+  const [media, setMedia] = useState(null);
+  const [genre, setGenre] = useState([]);
+  const [sort, SetSort] = useState(null);
+  
+  const selectLanguage = () => {
+    navigation.goBack();
+  }
+
+  navigation.setOptions({
+    headerBackImage: () => (
+      <Entypo name="arrow-left" size={24} color="black" />
+    )
+  })
+
   return (
-    <View></View>
+    <View>
+      <View>
+        <Text style={styles.category}>Category</Text>
+      </View>
+      <TouchableHighlight onPress={() => setMedia('book')}>
+        <Text>Book</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => setMedia('movie')}>
+        <Text>Movie</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => setMedia('tv')}>
+        <Text>TV Shows</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => setMedia('music')}>
+        <Text>Music</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text>Action</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text>Comedy</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text>Drama</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text>Thriller</Text>
+      </TouchableHighlight>
+    </View>
     /*<View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.filterBodyStack}>

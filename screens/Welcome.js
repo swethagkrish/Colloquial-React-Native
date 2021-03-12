@@ -12,7 +12,7 @@ import { Button } from "react-native-elements/dist/buttons/Button";
 
 function Welcome({ navigation }) {
   const generate = () => {
-    navigation.navigate('SelectLanguage');
+    navigation.navigate('MediaNavigation', {screen: 'SelectLanguage'});
   }
   return (
     <View style={styles.container}>
@@ -34,7 +34,7 @@ function Welcome({ navigation }) {
         </Card.Image>
       </Card>
       <View>
-        <Ionicons name="chatbox-sharp" size={50}></Ionicons>
+        <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
         <Text>You have no new notifications</Text>
       </View>
       <TouchableOpacity onPress={generate}>

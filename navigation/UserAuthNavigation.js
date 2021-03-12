@@ -3,7 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SignUp from '../screens/SignUpScreen/SignUp';
 import Login from '../screens/LoginScreen/Login';
-import Tabs from './TabNavigation'
+import Tabs from './TabNavigation';
+import MediaNavigation from './MediaNavigation';
+import ProfileNavigation from './ProfileNavigation';
+import SelectLanguage from '../screens/SelectLanguage';
 //import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
 const Stack = createStackNavigator();

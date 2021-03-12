@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import MediaTitles from "../components/MediaTitles";
+//import MediaTitles from "../components/MediaTitles";
 import Homebar from "../components/stuff/Homebar";
 import BackArrow from "../components/stuff/BackArrow";
 

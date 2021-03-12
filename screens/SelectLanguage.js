@@ -1,31 +1,96 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import Homebar from "../components/stuff/Homebar";
 
 function SelectLanguage({ navigation }) {
   const selectLanguage = () => {
     navigation.navigate('Filter');
   }
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={selectLanguage}>
-        <Image source={require('../assets/flags/germany.png')} />
+
+  const data = [
+    {
+      name: "Germany",
+      img: require("../assets/flags/germany.png")
+    },
+    {
+      name: "Portugal",
+      img: require("../assets/flags/portugal.png")
+    }, 
+    {
+      name: "France",
+      img: require("../assets/flags/france.png")
+    }, 
+    {
+      name: "Netherlands",
+      img: require("../assets/flags/netherlands.png")
+    }, 
+    {
+      name: "Italy",
+      img: require('../assets/flags/italy.png')
+    }, 
+    {
+      name: "Spain",
+      img: require("../assets/flags/spain.png")
+    }
+  ]
+
+    const renderItem = ({ item }) => (
+      <TouchableOpacity style={{ flex: 1, marginHorizontal: 20, marginBottom: 20 }} onPress={selectLanguage}>
+        <Image
+          style={{ width: "100%", height: 140 }}
+          source={item.img}
+        />
+        <Text style = {styles.languageLabel}>{item.name}</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={selectLanguage}>
-        <Image source={require('../assets/flags/france.png')} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={selectLanguage}>
-        <Image source={require('../assets/flags/italy.png')} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={selectLanguage}>
-        <Image source={require('../assets/flags/portugal.png')} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={selectLanguage}>
-        <Image source={require('../assets/flags/spain.png')} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={selectLanguage}>
-        <Image source={require('../assets/flags/netherlands.png')} />
-      </TouchableOpacity>
+    );
+      return (
+        <View style={{ flex: 1 }}>
+          <View style={styles.container}>
+              <Text style={styles.selectALanguage}>Pick a Language</Text>
+          </View> 
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.name}
+            numColumns={2}
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingVertical: 20 }}
+          />
+        </View>
+      );
+    }
+  /*return (
+    <View>
+      <View style={styles.container}>
+        <Text style={styles.selectALanguage}>Pick a Language</Text>
+      </View> 
+      <View style= {styles.buttonContainter}> 
+        <TouchableOpacity style= {styles.languageButton} onPress={selectLanguage}>
+          <Image source={require('../assets/flags/germany.png')} />
+          <Text style = {styles.languageLabel}>Germany</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style= {styles.languageButton} onPress={selectLanguage}>
+          <Image source={require('../assets/flags/france.png')} />
+          <Text style = {styles.languageLabel}>France</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style= {styles.languageButton} onPress={selectLanguage}>
+          <Image source={require('../assets/flags/italy.png')} />
+          <Text style = {styles.languageLabel}>Italy</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style= {styles.languageButton} onPress={selectLanguage}>
+          <Image source={require('../assets/flags/portugal.png')} />
+          <Text style = {styles.languageLabel}>Portugal</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style= {styles.languageButton} onPress={selectLanguage}>
+          <Image source={require('../assets/flags/spain.png')} />
+          <Text style = {styles.languageLabel}>Spain</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style= {styles.languageButton} onPress={selectLanguage}>
+          <Image source={require('../assets/flags/netherlands.png')} />
+          <Text style = {styles.languageLabel}>Netherlands</Text>
+        </TouchableOpacity>
+      </View>
+      
     </View>
     /*<View style={styles.container}>
       <Homebar style={styles.homebar}></Homebar>
@@ -68,188 +133,30 @@ function SelectLanguage({ navigation }) {
           </View>
         </View>
       </View>
-    </View>*/
+    </View>
   );
-}
+} */
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    height: 140,
+    alignItems: "center"
   },
   homebar: {
     width: 360,
     height: 65,
     marginTop: 675
   },
-  selectALanguage: {
-    fontFamily: "OpenSans_800ExtraBold",
-    color: "rgba(27,6,94,1)",
-    height: 131,
-    width: 360,
-    fontSize: 48,
-    textAlign: "center",
-    marginTop: -718
+  buttonContainter: {
+    width: 327, 
+    height: 700,
+    alignItems: "center"
   },
-  languageButtons: {
-    width: 327,
-    height: 471,
-    marginTop: 14,
-    marginLeft: 17
-  },
-  germanButton: {
-    width: 154,
-    height: 131
-  },
-  gERButton: {
-    width: 154,
-    height: 131,
-    backgroundColor: "rgba(217,240,255,1)",
-    borderRadius: 44,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  german: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    fontSize: 24,
-    marginTop: 85,
-    marginLeft: 31
-  },
-  italianButton: {
-    width: 154,
-    height: 131,
-    marginLeft: 17
-  },
-  iTLButton: {
-    width: 154,
-    height: 131,
-    backgroundColor: "rgba(217,240,255,1)",
-    borderRadius: 44,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  italian: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    fontSize: 24,
-    marginTop: 85,
-    marginLeft: 41
-  },
-  germanButtonRow: {
-    height: 131,
+  languageButton: {
+    flex: 1,
     flexDirection: "row",
-    marginLeft: 1,
-    marginRight: 1
-  },
-  frenchButton: {
-    width: 154,
-    height: 131
-  },
-  fRAButton: {
-    width: 154,
-    height: 131,
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 44,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  french: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    fontSize: 24,
-    marginTop: 86,
-    marginLeft: 38
-  },
-  portugueseButton: {
-    width: 154,
-    height: 131,
-    marginLeft: 17
-  },
-  pORButton: {
-    width: 154,
-    height: 131,
-    backgroundColor: "rgba(217,240,255,1)",
-    borderRadius: 44,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  portuguese: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    height: 28,
-    width: 147,
-    fontSize: 24,
-    textAlign: "center",
-    marginTop: 86,
-    marginLeft: 4
-  },
-  frenchButtonRow: {
-    height: 131,
-    flexDirection: "row",
-    marginTop: 38,
-    marginLeft: 1,
-    marginRight: 1
-  },
-  spanishButton: {
-    width: 154,
-    height: 131
-  },
-  eSPButton: {
-    width: 154,
-    height: 131,
-    backgroundColor: "rgba(217,240,255,1)",
-    borderRadius: 44,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  spanish: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    fontSize: 24,
-    marginTop: 85,
-    marginLeft: 32
-  },
-  dutchButton: {
-    width: 154,
-    height: 131,
-    justifyContent: "center",
-    marginLeft: 18
-  },
-  dUTButton: {
-    width: 154,
-    height: 131,
-    borderRadius: 44,
-    backgroundColor: "rgba(217,240,255,1)",
     shadowColor: "rgba(0,0,0,1)",
     shadowOffset: {
       width: 3,
@@ -258,21 +165,18 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0,
-    alignSelf: "center"
+    width: 154,
+    height: 131
   },
-  dutch: {
+  selectALanguage: {
+    fontFamily: "OpenSans_800ExtraBold",
+    color: "rgba(27,6,94,1)",
+    fontSize: 48
+  },
+  languageLabel: {
     fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
-    textAlign: "center",
     fontSize: 24,
-    marginTop: 85,
-    marginLeft: 43
-  },
-  spanishButtonRow: {
-    height: 131,
-    flexDirection: "row",
-    marginTop: 41,
-    marginRight: 1
   }
 });
 
