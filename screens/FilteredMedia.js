@@ -11,9 +11,9 @@ function FilteredMedia({ route, navigation}) {
   const selectLanguage = route.params.lang;
   //const sortMethod = route.params.sorting;
 
-  var fetchMediaRef = database.ref(selectLanguage);
-  fetchMediaRef.child(selectedMedia).get().then(function(snapshot) {
-    
+  var rootRef = database.ref(selectLanguage);
+  rootRef.child(selectedMedia).get().then(function(snapshot) {
+
   })
 
   return (
