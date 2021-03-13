@@ -3,39 +3,45 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, FlatList } from "react
 import Homebar from "../components/stuff/Homebar";
 
 function SelectLanguage({ navigation }) {
-  const selectLanguage = () => {
+  const selectLanguage = (chosen) => {
     navigation.navigate('Filter');
   }
 
   const data = [
     {
       name: "Germany",
-      img: require("../assets/flags/germany.png")
+      img: require("../assets/flags/germany.png"),
+      language: 'de'
     },
     {
       name: "Portugal",
-      img: require("../assets/flags/portugal.png")
+      img: require("../assets/flags/portugal.png"),
+      language: 'pt'
     }, 
     {
       name: "France",
-      img: require("../assets/flags/france.png")
+      img: require("../assets/flags/france.png"),
+      language: 'fr'
     }, 
     {
       name: "Spain",
-      img: require("../assets/flags/spain.png")
+      img: require("../assets/flags/spain.png"),
+      language: 'es'
     }, 
     {
       name: "Italy",
-      img: require('../assets/flags/italy.png')
+      img: require('../assets/flags/italy.png'),
+      language: 'it'
     }, 
     {
       name: "Netherlands",
-      img: require("../assets/flags/Netherlands.png")
+      img: require("../assets/flags/netherlands.png"),
+      language: 'nl'
     }
   ]
 
     const renderItem = ({ item }) => (
-      <TouchableOpacity style={styles.languageButton} onPress={selectLanguage}>
+      <TouchableOpacity style={styles.languageButton} onPress={() => {navigation.navigate('Filter', { language: item.language})}}>
         <Image
           style={{ width: 100, height: 70}}
           source={item.img}
@@ -139,8 +145,9 @@ function SelectLanguage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 70,
-    alignItems: "center"
+    height: 60,
+    alignItems: "center",
+    marginBottom: "10%"
   },
   homebar: {
     width: 360,
@@ -149,8 +156,8 @@ const styles = StyleSheet.create({
   },
   languageButton: {
     flex: 1, 
-    marginHorizontal: 20, 
-    marginBottom: 20,
+    marginHorizontal: "5%", 
+    marginBottom: "15%",
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 44,
     shadowColor: "rgba(0,0,0,1)",
@@ -171,12 +178,12 @@ const styles = StyleSheet.create({
     color: "rgba(27,6,94,1)",
     fontSize: 48,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   languageLabel: {
     fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
-    fontSize: 24,
+    fontSize: 24
   }
 });
 

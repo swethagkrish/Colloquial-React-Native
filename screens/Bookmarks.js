@@ -4,38 +4,41 @@ import { StyleSheet, View, Text ,Image, TouchableOpacity, FlatList } from "react
 //import BookmarkComponent from "../components/BookmarkComponent";
 
 function Bookmarks({ navigation }) {
-  const bookmarks = () => {
-    navigation.navigate('SelectedMedia');
-  }
   const data = [
     {
       name: "Germany",
-      img: require("../assets/flags/germany.png")
+      img: require("../assets/flags/germany.png"),
+      language: 'de'
     },
     {
       name: "Portugal",
-      img: require("../assets/flags/portugal.png")
+      img: require("../assets/flags/portugal.png"),
+      language: 'pt'
     }, 
     {
       name: "France",
-      img: require("../assets/flags/france.png")
+      img: require("../assets/flags/france.png"),
+      language: 'fr'
     }, 
     {
       name: "Spain",
-      img: require("../assets/flags/spain.png")
+      img: require("../assets/flags/spain.png"),
+      language: "es"
     }, 
     {
       name: "Italy",
-      img: require('../assets/flags/italy.png')
+      img: require('../assets/flags/italy.png'),
+      language: 'it'
     }, 
     {
       name: "Netherlands",
-      img: require("../assets/flags/Netherlands.png")
+      img: require("../assets/flags/netherlands.png"),
+      language: 'nl'
     }
   ]
 
     const renderItem = ({ item }) => (
-      <TouchableOpacity style={styles.languageButton} onPress={selectLanguage}>
+      <TouchableOpacity style={styles.languageButton}>
         <Image
           style={{ width: 50, height: 40}}
           source={item.img}

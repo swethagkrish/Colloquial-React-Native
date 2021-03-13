@@ -1,54 +1,60 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, TouchableOpacity} from "react-native";
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button} from "react-native";
 import { Entypo } from "@expo/vector-icons"
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 //import Homebar from "../components/Homebar";
 
-function Filter({ navigation }) {
-  const [media, setMedia] = useState(null);
+function Filter({ route, navigation }) {
+  const [media, setMedia] = useState([]);
   const [genre, setGenre] = useState([]);
-  const [sort, SetSort] = useState(null);
-  
-  const selectLanguage = () => {
-    navigation.goBack();
+  //const [sort, SetSort] = useState(null);
+  const language = route.params.language;
+
+  /*const selectGenre = (selected) => {
+    setGenre(genre => [...genre, selected]);
+  }*/
+
+  const filterMedia = () => {
+    navigation.navigate('FilteredMedia', {lang: language, gen: genre, mediaSelected: media});
   }
 
-  navigation.setOptions({
+  /*navigation.setOptions({
     headerBackImage: () => (
       <Entypo name="arrow-left" size={24} color="black" />
     )
-  })
+  })*/
 
   return (
     <View>
       <View>
         <Text style={styles.category}>Category</Text>
       </View>
-      <TouchableHighlight onPress={() => setMedia('book')}>
+      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'book'])}}>
         <Text>Book</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => setMedia('movie')}>
+      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'movie'])}}>
         <Text>Movie</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => setMedia('tv')}>
+      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'tv'])}}>
         <Text>TV Shows</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => setMedia('music')}>
+      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'music'])}}>
         <Text>Music</Text>
       </TouchableHighlight>
-      <TouchableHighlight>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
         <Text>Action</Text>
       </TouchableHighlight>
-      <TouchableHighlight>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
         <Text>Comedy</Text>
       </TouchableHighlight>
-      <TouchableHighlight>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
         <Text>Drama</Text>
       </TouchableHighlight>
-      <TouchableHighlight>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
         <Text>Thriller</Text>
       </TouchableHighlight>
+      <Button title="Filter" onPress={filterMedia}/>
     </View>
     /*<View style={styles.container}>
       <StatusBar barStyle="dark-content" />

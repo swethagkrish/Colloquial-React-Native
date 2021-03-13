@@ -10,6 +10,7 @@ if (!firebase.apps.length) {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const database = firebase.database();
 
 export const login = (email, password) =>
     auth.signInWithEmailAndPassword(email, password);

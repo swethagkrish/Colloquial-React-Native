@@ -19,12 +19,12 @@ function Welcome({ navigation }) {
       <Text style = {styles.text}>Welcome</Text>
       <View style = {styles.notificationBody}>
         <Text style = {styles.notifications} >Notifications</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%'}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf : 'flex-start'}}>
           <MaterialCommunityIconsIcon
               name="spotlight"
               style={styles.spotlightIcon}
           ></MaterialCommunityIconsIcon>
-          <Text style = {styles.spotlightTitle}>Spotlighted Media of the Day</Text>
+          <Text style = {styles.spotlightTitle}>Spotlighted Media</Text>
         </View>
         <Card containerStyle = {styles.bookmark}>
           <Card.Title>Media Name</Card.Title>
@@ -36,8 +36,9 @@ function Welcome({ navigation }) {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%',alignSelf: 'flex-start' }}>
           <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
           <Text style = {styles.chatNotifications}>  no new notifications</Text>
-        </View>
       </View>
+    </View>
+      
 
       <TouchableOpacity onPress={generate}>
         <View style={styles.button}>
@@ -63,6 +64,7 @@ function Welcome({ navigation }) {
           </View>
         </View>
       </TouchableOpacity>
+
     </View>
   );
 }
@@ -70,6 +72,7 @@ function Welcome({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: 50
   },
   notificationBody: {
     backgroundColor: "rgba(217,240,255,1)",
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSans_700Bold",
     color: "#121212",
     fontSize: 24,
-    textAlign: "center"
+    alignSelf: "center"
   },
   notificationsStack: {
     width: 296,
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     height: 210,
     width: 231,
     borderRadius: 43, 
-    color: 'FF8600'
+    color: '#FF8600'
   },
   chatNotif: {
     width: 292,

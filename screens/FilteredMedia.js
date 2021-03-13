@@ -3,10 +3,24 @@ import { StyleSheet, View, Text } from "react-native";
 //import MediaTitles from "../components/MediaTitles";
 import Homebar from "../components/stuff/Homebar";
 import BackArrow from "../components/stuff/BackArrow";
+import { database } from '../components/Firebase/method'
 
-function FilteredMedia(props) {
+function FilteredMedia({ route, navigation}) {
+  const selectedGenre = route.params.gen;
+  const selectedMedia = route.params.mediaSelected;
+  const selectLanguage = route.params.lang;
+  //const sortMethod = route.params.sorting;
+
+  var fetchMediaRef = database.ref(selectLanguage);
+  fetchMediaRef.child(selectedMedia).get().then(function(snapshot) {
+    
+  })
+
   return (
-    <View style={styles.container}>
+    <View>
+
+    </View>
+    /*<View style={styles.container}>
       <View style={styles.mediaTitlesRow}>
         <MediaTitles style={styles.mediaTitles}></MediaTitles>
         <MediaTitles style={styles.mediaTitles2}></MediaTitles>
@@ -20,7 +34,7 @@ function FilteredMedia(props) {
         <MediaTitles style={styles.mediaTitles3}></MediaTitles>
         <MediaTitles style={styles.mediaTitles4}></MediaTitles>
       </View>
-    </View>
+    </View>*/
   );
 }
 
