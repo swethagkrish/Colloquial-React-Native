@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
 //import Homebar from "../components/Homebar";
 import ProfilePic from "../components/stuff/ProfilePic";
 /*import Messages from "../components/Messages";
 import MessageComponent from "../components/MessageComponent";*/
 
-function Contacts(props) {
+function Contacts({navigation}) {
+  const { user, setUser } = useContext(UserAuthContext);
+  
   return (
     <View style={styles.container}>
       {/*<Homebar style={styles.homebar}></Homebar>*/}

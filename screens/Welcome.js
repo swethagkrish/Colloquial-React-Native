@@ -36,35 +36,35 @@ function Welcome({ navigation }) {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%',alignSelf: 'flex-start' }}>
           <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
           <Text style = {styles.chatNotifications}>  no new notifications</Text>
-      </View>
-    </View>
-      
-
-      <TouchableOpacity onPress={generate}>
-        <View style={styles.button}>
-          <View style={styles.bookStackRow}>
-            <View style={styles.bookStack}>
-              <EntypoIcon name="book" style={styles.book}></EntypoIcon>
-              <MaterialCommunityIconsIcon
-                name="video-vintage"
-                style={styles.movie}
-              ></MaterialCommunityIconsIcon>
-            </View>
-            <View style={styles.tVStack}>
-              <MaterialCommunityIconsIcon
-                name="television-classic"
-                style={styles.tV}
-              ></MaterialCommunityIconsIcon>
-              <FontAwesomeIcon
-                name="music"
-                style={styles.music}
-              ></FontAwesomeIcon>
-              <Text style={styles.generateRec}>Generate Recommendations</Text>
-            </View>
-          </View>
         </View>
+      </View>
+    
+      <TouchableOpacity onPress={generate}>
+        <View style = {styles.button}>
+            <View style = {styles.emojiContainer}>
+              <View style={styles.bookStackRow}>
+                <View style={styles.bookStack}>
+                  <EntypoIcon name="book" style={styles.book}></EntypoIcon>
+                  <MaterialCommunityIconsIcon
+                    name="video-vintage"
+                    style={styles.movie}
+                  ></MaterialCommunityIconsIcon>
+                </View>
+                <View style={styles.tVStack}>
+                  <MaterialCommunityIconsIcon
+                    name="television-classic"
+                    style={styles.tV}
+                  ></MaterialCommunityIconsIcon>
+                  <FontAwesomeIcon
+                    name="music"
+                    style={styles.music}
+                  ></FontAwesomeIcon>
+                </View>
+              </View>
+            </View>
+            <Text style={styles.generateRec}>Generate Media Recs</Text>
+          </View>
       </TouchableOpacity>
-
     </View>
   );
 }
@@ -72,17 +72,41 @@ function Welcome({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 50
+    height: 50,
+    alignItems: "center"
+  },
+  button: {
+    width: 325,
+    height: 80,
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 82,
+    marginBottom: "3%",
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignSelf : 'center'
+  },
+  emojiContainer: {
+    width: 60, 
+    height: 60,
+    marginBottom: 5
   },
   notificationBody: {
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 70,
     opacity: 0.75,
     width: 320,
-    height: 500,
+    height: 450,
     alignItems: "center",
     alignSelf: "center",
-    marginBottom: 20
+    marginBottom: "5%"
   },
   body: {
     width: 315,
@@ -115,10 +139,10 @@ const styles = StyleSheet.create({
     marginLeft: 4
   },
   bookmark: {
-    height: 210,
+    height: 300,
     width: 231,
-    borderRadius: 43, 
-    color: '#FF8600'
+    borderRadius: 43,
+    backgroundColor: '#FF8600'
   },
   chatNotif: {
     width: 292,
@@ -158,29 +182,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 48,
     alignSelf: "center"
-  },
-  genRecButton: {
-    width: 325,
-    height: 68,
-    marginTop: 556,
-    marginLeft: 18
-  },
-  button: {
-    width: 325,
-    height: 68,
-    backgroundColor: "rgba(217,240,255,1)",
-    borderRadius: 82,
-    marginTop: 20,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flex: 1,
-    justifyContent: "center"
   },
   book: {
     top: 0,
@@ -223,15 +224,14 @@ const styles = StyleSheet.create({
     width: 26
   },
   generateRec: {
-    top: 4,
-    left: 15,
-    position: "absolute",
     fontFamily: "OpenSans_700Bold",
     color: "#121212",
     height: 63,
     width: 258,
     fontSize: 20,
-    textAlign: "center"
+    alignSelf: "center",
+    marginLeft: 35,
+    marginTop: 30
   },
   tVStack: {
     width: 273,

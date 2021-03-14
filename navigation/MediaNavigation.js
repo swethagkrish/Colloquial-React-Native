@@ -16,6 +16,7 @@ export default function MediaNavigation() {
             <Stack.Screen name='Filter' component={Filter}/>
             <Stack.Screen name='FilteredMedia' component={FilteredMedia} />
             <Stack.Screen name='SelectedMedia' component={SelectedMedia} />
+            <Stack.Screen name='Review' component={Review} />
             <Stack.Screen name='WriteReview' component={WriteReview} />
         </Stack.Navigator>
     )

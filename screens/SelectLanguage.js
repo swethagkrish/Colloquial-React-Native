@@ -11,7 +11,7 @@ function SelectLanguage({ navigation }) {
     {
       name: "Germany",
       img: require("../assets/flags/germany.png"),
-      language: 'de'
+      language: 'german'
     },
     {
       name: "Portugal",
@@ -21,17 +21,17 @@ function SelectLanguage({ navigation }) {
     {
       name: "France",
       img: require("../assets/flags/france.png"),
-      language: 'fr'
+      language: 'french'
     }, 
     {
       name: "Spain",
       img: require("../assets/flags/spain.png"),
-      language: 'es'
+      language: 'spanish'
     }, 
     {
       name: "Italy",
       img: require('../assets/flags/italy.png'),
-      language: 'it'
+      language: 'italian'
     }, 
     {
       name: "Netherlands",

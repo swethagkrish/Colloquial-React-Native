@@ -1,6 +1,9 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button} from "react-native";
-import { Entypo } from "@expo/vector-icons"
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button, FlatList} from "react-native";
+import { Entypo } from "@expo/vector-icons";
+import {MaterialCommunityIconsIcon} from "@expo/vector-icons";
+import {FontAwesomeIcon} from "@expo/vector-icons";
+import {SimpleLineIconsIcon} from "@expo/vector-icons";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 //import Homebar from "../components/Homebar";
@@ -11,9 +14,63 @@ function Filter({ route, navigation }) {
   //const [sort, SetSort] = useState(null);
   const language = route.params.language;
 
-  /*const selectGenre = (selected) => {
-    setGenre(genre => [...genre, selected]);
-  }*/
+  const category = [
+    {
+      name: "Books",
+      tag: "book",
+      img:  "<EntypoIcon name= 'book' style={styles.bookEmoji}></EntypoIcon>"
+    }, 
+    {
+      name: "Music",
+      tag: "music",
+      img: " <FontAwesomeIcon name= 'music' style={styles.musicEmoji}></FontAwesomeIcon>"
+    },
+    {
+      name: "TV Shows",
+      tag: "tv",
+      img: "<MaterialCommunityIconsIcon name= 'television-classic' style={styles.tVEmoji}></MaterialCommunityIconsIcon>"
+    },
+    {
+      name: "Movies",
+      tag: "movie",
+      img: "<MaterialCommunityIconsIcon name= 'video-vintage' style={styles.movieEmoji}> </MaterialCommunityIconsIcon>"
+    }
+  ]
+
+  const genres = [
+    {
+      name: "Action",
+      tag: "adventure",
+      img: "<SimpleLineIconsIcon name= 'target' style={styles.actionEmoji}></SimpleLineIconsIcon>"
+    },
+    {
+      name: "Comedy",
+      tag: "comedy",
+      img: "<IoniconsIcon name= 'ios-happy' style={styles.comedyEmoji}></IoniconsIcon>"
+    }, 
+    {
+      name: "Romance",
+      tag: "romance",
+      img: "<MaterialCommunityIconsIcon name= 'heart' style={styles.romanceEmoji} ></MaterialCommunityIconsIcon>"
+    }, 
+    {
+      name: "Thriller",
+      tag: "thriller",
+      img:" <MaterialCommunityIconsIcon name= 'knife' style={styles.thrillerEmoji} ></MaterialCommunityIconsIcon>"
+    }, 
+    {
+      name: "Horror",
+      tag: "horror",
+      img: "<MaterialCommunityIconsIcon name= 'ghost' style={styles.horrorEmoji}></MaterialCommunityIconsIcon>"
+    }, 
+    {
+      name: "Drama",
+      tag: "drama",
+      emojiLibary:"Entypo",
+      emojiName: "mask",
+      img: "<EntypoIcon name= 'mask' ></EntypoIcon>"
+    }
+  ] 
 
   const filterMedia = () => {
     navigation.navigate('FilteredMedia', {lang: language, gen: genre, mediaSelected: media});
@@ -24,8 +81,52 @@ function Filter({ route, navigation }) {
       <Entypo name="arrow-left" size={24} color="black" />
     )
   })*/
+  
 
-  return (
+   const renderItem = ({ item }) => (
+    <TouchableHighlight onPress={() => {setMedia(media => [...media, item.tag])}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf : 'flex-start'}}>
+          <Text>{item.name}</Text>
+          {/*item.img*/}
+        </View>
+    </TouchableHighlight>
+    );
+
+    const renderGenre = ({item}) => (
+      <TouchableHighlight onPress={() => {setMedia(genre => [...genre, item.tag])}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf : 'flex-start'}}>
+          <Text>{item.name}</Text>
+          {/*item.img */}
+        </View>
+    </TouchableHighlight>
+    );
+    return (
+      <View style={{ flex: 1 }}>
+        <View style={styles.container}>
+            <Text style={styles.bookmarkTitle}>Category</Text>
+        </View> 
+        <FlatList
+          data={category}
+          renderItem={renderItem}
+          keyExtractor={item => item.name}
+          numColumns={2}
+          style={{ flex: 1 }}
+          contentContainerStyle={{ paddingVertical: 1 }}
+        />
+        <View style={styles.container}>
+            <Text style={styles.bookmarkTitle}>Genre</Text>
+        </View>
+        <FlatList 
+          data = {genre}
+          renderItem = {renderGenre}
+          keyExtractor= {item => item.name}
+          numColums = {2}
+          style= {{flex: 1}}
+          contentContainerStyle = {{paddingVertical: 1}}
+        />
+      </View>
+    );
+  /*return (
     <View>
       <View>
         <Text style={styles.category}>Category</Text>
@@ -42,20 +143,26 @@ function Filter({ route, navigation }) {
       <TouchableHighlight onPress={() => {setMedia(media => [...media, 'music'])}}>
         <Text>Music</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'adventure'])}}>
         <Text>Action</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'comedy'])}}>
         <Text>Comedy</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'drama'])}}>
         <Text>Drama</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, selected])}}>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'thriller'])}}>
         <Text>Thriller</Text>
       </TouchableHighlight>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'horror'])}}>
+        <Text>Horror</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'romance'])}}>
+        <Text>Romance</Text>
+      </TouchableHighlight>
       <Button title="Filter" onPress={filterMedia}/>
-    </View>
+    </View> */
     /*<View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.filterBodyStack}>
@@ -229,9 +336,7 @@ function Filter({ route, navigation }) {
       </View>
       <Homebar style={styles.homebar}></Homebar>
     </View>*/
-  );
-}
-
+  }
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -258,9 +363,7 @@ const styles = StyleSheet.create({
     height: 33,
     width: 99,
     fontSize: 18,
-    textAlign: "center",
-    marginTop: 50,
-    marginLeft: 111
+    alignSelf: "center"
   },
   bookButton: {
     width: 142,
@@ -902,9 +1005,6 @@ const styles = StyleSheet.create({
     marginLeft: 157
   },
   filterEmoji: {
-    top: 0,
-    left: 45,
-    position: "absolute",
     color: "rgba(0,107,166,1)",
     fontSize: 80
   },

@@ -6,7 +6,7 @@ import ProfilePic from "../components/stuff/ProfilePic";
 import Homebar from "../components/stuff/Homebar";
 import BackArrow from "../components/stuff/BackArrow";
 
-function Review(props) {
+function Review({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.profileReview}>

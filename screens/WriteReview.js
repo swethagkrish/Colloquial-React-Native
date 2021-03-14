@@ -3,8 +3,15 @@ import { StyleSheet, View, Text, TextInput } from "react-native";
 import BackArrow from "../components/stuff/BackArrow";
 import Homebar from "../components/stuff/Homebar";
 import Icon from "react-native-vector-icons/Entypo";
+import { firestore } from '../components/Firebase/method'
 
-function WriteReview({ navigation }) {
+function WriteReview({ route, navigation }) {
+  const user = route.params.userID;
+  const media = route.params.mediaID;
+
+  const save = () => {
+    firestore.collection('users');
+  }
   return (
     <View style={styles.container}>
       <View style={styles.reviewBodyStack}>

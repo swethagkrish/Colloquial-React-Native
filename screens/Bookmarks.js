@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
   languageButton: {
     flex: 1, 
     marginHorizontal: 5, 
-    marginBottom: 5,
+    marginBottom: 20,
+    marginRight: 10,
     backgroundColor: "rgba(255,134,0,1)",
     borderRadius: 21,
     shadowColor: "rgba(0,0,0,1)",
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0,
-    width: 81,
+    width: 80,
     height: 65, 
     alignItems: "center",
     justifyContent: "center"

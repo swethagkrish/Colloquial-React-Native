@@ -7,7 +7,7 @@ import Homebar from "../components/stuff/Homebar";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import Svg, { Ellipse } from "react-native-svg";
 
-function Profile(props) {
+function Profile({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.changePasswordButtonRow}>
