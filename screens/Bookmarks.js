@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   languageLabel: {
     fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
-    fontSize: 24,
+    fontSize: 24
   }
 });
 

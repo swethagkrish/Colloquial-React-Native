@@ -34,8 +34,6 @@ export default function SignUp({navigation}) {
                     fullName,
                     birthdate,
                     email,
-                    language: [],
-                    avatar,
                 };
                 const usersRef = firestore.collection('users')
                 usersRef

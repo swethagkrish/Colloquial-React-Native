@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button, FlatList} from "react-native";
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button, FlatList, Image} from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import {MaterialCommunityIconsIcon} from "@expo/vector-icons";
 import {FontAwesomeIcon} from "@expo/vector-icons";
@@ -18,22 +18,22 @@ function Filter({ route, navigation }) {
     {
       name: "Books",
       tag: "book",
-      img:  "<EntypoIcon name= 'book' style={styles.bookEmoji}></EntypoIcon>"
+      img: require("../assets/emojis/book.png")
     }, 
     {
       name: "Music",
       tag: "music",
-      img: " <FontAwesomeIcon name= 'music' style={styles.musicEmoji}></FontAwesomeIcon>"
+      img: require("../assets/emojis/music.png"),
     },
     {
       name: "TV Shows",
       tag: "tv",
-      img: "<MaterialCommunityIconsIcon name= 'television-classic' style={styles.tVEmoji}></MaterialCommunityIconsIcon>"
+      img: require("../assets/emojis/tv.png")
     },
     {
       name: "Movies",
       tag: "movie",
-      img: "<MaterialCommunityIconsIcon name= 'video-vintage' style={styles.movieEmoji}> </MaterialCommunityIconsIcon>"
+      img: require("../assets/emojis/movie.png")
     }
   ]
 
@@ -41,34 +41,32 @@ function Filter({ route, navigation }) {
     {
       name: "Action",
       tag: "adventure",
-      img: "<SimpleLineIconsIcon name= 'target' style={styles.actionEmoji}></SimpleLineIconsIcon>"
+      img: require("../assets/emojis/action.png")
     },
     {
       name: "Comedy",
       tag: "comedy",
-      img: "<IoniconsIcon name= 'ios-happy' style={styles.comedyEmoji}></IoniconsIcon>"
+      img: require("../assets/emojis/comedy.png")
     }, 
     {
       name: "Romance",
       tag: "romance",
-      img: "<MaterialCommunityIconsIcon name= 'heart' style={styles.romanceEmoji} ></MaterialCommunityIconsIcon>"
+      img: require("../assets/emojis/romance.png")
     }, 
     {
       name: "Thriller",
       tag: "thriller",
-      img:" <MaterialCommunityIconsIcon name= 'knife' style={styles.thrillerEmoji} ></MaterialCommunityIconsIcon>"
+      img: require("../assets/emojis/thriller.png")
     }, 
     {
       name: "Horror",
       tag: "horror",
-      img: "<MaterialCommunityIconsIcon name= 'ghost' style={styles.horrorEmoji}></MaterialCommunityIconsIcon>"
+      img: require("../assets/emojis/horror.png")
     }, 
     {
       name: "Drama",
       tag: "drama",
-      emojiLibary:"Entypo",
-      emojiName: "mask",
-      img: "<EntypoIcon name= 'mask' ></EntypoIcon>"
+      img: require("../assets/emojis/drama.png")
     }
   ] 
 
@@ -84,46 +82,47 @@ function Filter({ route, navigation }) {
   
 
    const renderItem = ({ item }) => (
-    <TouchableHighlight onPress={() => {setMedia(media => [...media, item.tag])}}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf : 'flex-start'}}>
-          <Text>{item.name}</Text>
-          {/*item.img*/}
+    <TouchableHighlight style={styles.filterButton} onPress={() => {setMedia(media => [...media, item.tag])}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: '0%',alignSelf: 'flex-start', justifyContent: 'center'}}>
+          <Image style={{ width: 40, height: 40}} source={item.img} />
+          <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", fontSize: 16}}>{item.name}</Text>
         </View>
     </TouchableHighlight>
     );
 
     const renderGenre = ({item}) => (
-      <TouchableHighlight onPress={() => {setMedia(genre => [...genre, item.tag])}}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf : 'flex-start'}}>
-          <Text>{item.name}</Text>
-          {/*item.img */}
-        </View>
-    </TouchableHighlight>
+        <TouchableHighlight style={styles.filterButton} onPress={() => {setGenre(genre => [...genre, item.tag])}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Image style={{ width: 40, height: 40}} source={item.img} />
+            <Text>{item.name}</Text>
+          </View>
+      </TouchableHighlight>
     );
     return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.container}>
-            <Text style={styles.bookmarkTitle}>Category</Text>
-        </View> 
-        <FlatList
-          data={category}
-          renderItem={renderItem}
-          keyExtractor={item => item.name}
-          numColumns={2}
-          style={{ flex: 1 }}
-          contentContainerStyle={{ paddingVertical: 1 }}
-        />
-        <View style={styles.container}>
-            <Text style={styles.bookmarkTitle}>Genre</Text>
+      <View style={styles.container}>
+        <View>
+            <Text style={styles.title}>Filter Media</Text> 
         </View>
-        <FlatList 
-          data = {genre}
-          renderItem = {renderGenre}
-          keyExtractor= {item => item.name}
-          numColums = {2}
-          style= {{flex: 1}}
-          contentContainerStyle = {{paddingVertical: 1}}
-        />
+        <View style= {styles.filterBody}> 
+          <Text style = {styles.labels}> Category</Text>
+            <FlatList
+              data={category}
+              renderItem={renderItem}
+              keyExtractor={item => item.name}
+              numColumns={2}
+              style={{marginBottom: 1}}
+              contentContainerStyle={{ paddingVertical: 5 }}
+            />
+            <Text style = {styles.labels}>Genre</Text>
+            <FlatList 
+            data = {genres}
+            renderItem = {renderGenre}
+            keyExtractor= {item => item.name}
+            numColums = {2}
+            style={{}}
+            contentContainerStyle = {{paddingVertical: 10}}
+           /> 
+        </View>
       </View>
     );
   /*return (
@@ -339,15 +338,50 @@ function Filter({ route, navigation }) {
   }
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    alignItems: "center",
+  },
+  labels: {
+    fontFamily: "OpenSans_600SemiBold",
+    fontSize: 18,
+    color: "#006BA6", 
+    marginBottom
   },
   filterBody: {
-    top: 111,
-    left: 3,
-    width: 352,
-    height: 644,
-    position: "absolute"
+    backgroundColor: "#D9F0FF", 
+    borderRadius: 70, 
+    width: 321,
+    height: 643,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center"
   },
+  title: {
+    fontFamily: "OpenSans_800ExtraBold",
+    color: "rgba(27,6,94,1)",
+    fontSize: 48,
+    alignItems: "center",
+    justifyContent: "center"
+  }, 
+  filterEmoji: {
+    width: 50, 
+    height: 50
+  },
+  filterButton: {
+    backgroundColor: "#FF8600",
+    borderRadius: 100,
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    width: 133,
+    height: 63,
+    marginRight: 10,
+    marginTop: 10
+  },  
   body: {
     left: 15,
     width: 321,
@@ -385,586 +419,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0
-  },
-  bookEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40,
-    marginTop: 10,
-    marginLeft: 10
-  },
-  books: {
-    top: 19,
-    left: 55,
-    position: "absolute",
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 27,
-    width: 87,
-    fontSize: 16
-  },
-  booButtonStack: {
-    width: 142,
-    height: 63
-  },
-  tVShowsButton: {
-    width: 133,
-    height: 63,
-    marginLeft: 18
-  },
-  tvsButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  tVEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    width: 40,
-    height: 44
-  },
-  tvShows: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 25,
-    width: 81,
-    textAlign: "center",
-    fontSize: 16,
-    marginTop: 9
-  },
-  tVEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 1,
-    marginLeft: 11,
-    marginTop: 10
-  },
-  bookButtonRow: {
-    height: 63,
-    flexDirection: "row",
-    marginLeft: 9,
-    marginRight: 19
-  },
-  moviesButton: {
-    width: 133,
-    height: 63
-  },
-  movButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  movieEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40
-  },
-  movies: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 20,
-    width: 62,
-    fontSize: 16,
-    marginLeft: 5,
-    marginTop: 12
-  },
-  movieEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 16,
-    marginLeft: 10,
-    marginTop: 10
-  },
-  musicButton: {
-    width: 133,
-    height: 63,
-    marginLeft: 27
-  },
-  musButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  musicEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    width: 34,
-    height: 40
-  },
-  music: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 22,
-    width: 60,
-    fontSize: 16,
-    marginLeft: 8,
-    marginTop: 8
-  },
-  musicEmojiRow: {
-    height: 40,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 20,
-    marginLeft: 11,
-    marginTop: 12
-  },
-  moviesButtonRow: {
-    height: 63,
-    flexDirection: "row",
-    marginTop: 24,
-    marginLeft: 9,
-    marginRight: 19
-  },
-  genre: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    height: 27,
-    width: 76,
-    fontSize: 18,
-    marginTop: 12,
-    marginLeft: 126
-  },
-  actionButton: {
-    width: 133,
-    height: 63
-  },
-  actButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  actionEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    width: 40,
-    height: 44
-  },
-  action: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 22,
-    width: 66,
-    fontSize: 16,
-    marginLeft: 5,
-    marginTop: 11
-  },
-  actionEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 12,
-    marginLeft: 10,
-    marginTop: 10
-  },
-  comedyButton: {
-    width: 133,
-    height: 63,
-    marginLeft: 27
-  },
-  comButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  comedyEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    width: 32,
-    height: 44
-  },
-  comedy: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 22,
-    width: 66,
-    fontSize: 16,
-    marginLeft: 6,
-    marginTop: 11
-  },
-  comedyEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 14,
-    marginLeft: 15,
-    marginTop: 10
-  },
-  actionButtonRow: {
-    height: 63,
-    flexDirection: "row",
-    marginLeft: 9,
-    marginRight: 19
-  },
-  dramaButton: {
-    width: 133,
-    height: 63,
-    marginTop: 1
-  },
-  draButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  dramaEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40
-  },
-  drama: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 22,
-    width: 66,
-    fontSize: 16,
-    marginLeft: 7,
-    marginTop: 11
-  },
-  dramaEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 12,
-    marginLeft: 8,
-    marginTop: 9
-  },
-  horrorButton: {
-    width: 133,
-    height: 63,
-    marginLeft: 27
-  },
-  horButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  horrorEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40
-  },
-  horror: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    fontSize: 16,
-    marginLeft: 1,
-    marginTop: 11
-  },
-  horrorEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 26,
-    marginLeft: 12,
-    marginTop: 10
-  },
-  dramaButtonRow: {
-    height: 64,
-    flexDirection: "row",
-    marginTop: 23,
-    marginLeft: 9,
-    marginRight: 19
-  },
-  thrillerButton: {
-    width: 133,
-    height: 63
-  },
-  thrButton: {
-    width: 133,
-    height: 63,
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    flexDirection: "row"
-  },
-  thrillerEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40
-  },
-  thriller: {
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 22,
-    width: 66,
-    fontSize: 16,
-    marginLeft: 5,
-    marginTop: 12
-  },
-  thrillerEmojiRow: {
-    height: 44,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 12,
-    marginLeft: 10,
-    marginTop: 9
-  },
-  romanceButton: {
-    width: 147,
-    height: 63,
-    marginLeft: 27
-  },
-  romButton: {
-    top: 0,
-    left: 0,
-    width: 133,
-    height: 63,
-    position: "absolute",
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  romanceEmoji: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40,
-    marginTop: 10,
-    marginLeft: 11
-  },
-  romance: {
-    top: 21,
-    left: 53,
-    position: "absolute",
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 22,
-    width: 94,
-    fontSize: 16
-  },
-  romButtonStack: {
-    width: 147,
-    height: 63
-  },
-  thrillerButtonRow: {
-    height: 63,
-    flexDirection: "row",
-    marginTop: 22,
-    marginLeft: 9,
-    marginRight: 5
-  },
-  sort: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    fontSize: 18,
-    marginTop: 14,
-    marginLeft: 130
-  },
-  recentSortButton: {
-    width: 133,
-    height: 63
-  },
-  mosRecButton: {
-    top: 0,
-    left: 0,
-    width: 133,
-    height: 63,
-    position: "absolute",
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  calendar: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 35,
-    width: 33,
-    height: 35,
-    marginTop: 14,
-    marginLeft: 13
-  },
-  mostRecent: {
-    top: 13,
-    left: 55,
-    position: "absolute",
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 51,
-    width: 66,
-    fontSize: 16
-  },
-  mosRecButtonStack: {
-    width: 133,
-    height: 64
-  },
-  alphaSortButton: {
-    width: 150,
-    height: 63,
-    marginLeft: 26
-  },
-  aZButton: {
-    top: 0,
-    left: 0,
-    width: 140,
-    height: 63,
-    position: "absolute",
-    backgroundColor: "rgba(255,134,0,1)",
-    borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
-  },
-  aZ: {
-    color: "rgba(27,6,94,1)",
-    fontSize: 35,
-    width: 35,
-    height: 38,
-    marginTop: 13,
-    marginLeft: 12
-  },
-  alphabetical: {
-    top: 20,
-    left: 49,
-    position: "absolute",
-    fontFamily: "OpenSans_700Bold",
-    color: "rgba(255,255,255,1)",
-    height: 24,
-    width: 101
-  },
-  aZButtonStack: {
-    width: 150,
-    height: 63
-  },
-  recentSortButtonRow: {
-    height: 63,
-    flexDirection: "row",
-    marginTop: 4,
-    marginLeft: 9,
-    marginRight: 3
-  },
-  filters: {
-    top: 0,
-    left: 0,
-    position: "absolute",
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(249,105,0,1)",
-    height: 40,
-    width: 352,
-    textAlign: "center",
-    fontSize: 36
-  },
-  bodyStack: {
-    width: 352,
-    height: 644
-  },
-  mediaRecommendations: {
-    top: 10,
-    left: 0,
-    position: "absolute",
-    fontFamily: "OpenSans_800ExtraBold",
-    color: "rgba(27,6,94,1)",
-    height: 111,
-    width: 352,
-    fontSize: 36,
-    textAlign: "center"
-  },
-  backArrow: {
-    position: "absolute",
-    top: 0,
-    left: 10,
-    height: 76,
-    width: 48
   },
   filterBodyStack: {
     width: 355,
