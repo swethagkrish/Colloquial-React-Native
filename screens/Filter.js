@@ -11,7 +11,7 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 function Filter({ route, navigation }) {
   const [media, setMedia] = useState([]);
   const [genre, setGenre] = useState([]);
-  //const [sort, SetSort] = useState(null);
+  const [sort, SetSort] = useState([]);
   const language = route.params.language;
 
   const category = [
@@ -70,8 +70,21 @@ function Filter({ route, navigation }) {
     }
   ] 
 
+  const sorts = [
+    {
+      name: "Recent",
+      tag: "recent",
+      img: require("../assets/emojis/calendar.png")
+    }, 
+    {
+      name: "A-Z",
+      tag: "alphabet", 
+      img: require("../assets/emojis/alpha.png")
+    }
+  ]
+
   const filterMedia = () => {
-    navigation.navigate('FilteredMedia', {lang: language, gen: genre, mediaSelected: media});
+    navigation.navigate('FilteredMedia', {lang: language, gen: genre, mediaSelected: media, selectedSort: sort});
   }
 
   /*navigation.setOptions({
@@ -84,44 +97,62 @@ function Filter({ route, navigation }) {
    const renderItem = ({ item }) => (
     <TouchableHighlight style={styles.filterButton} onPress={() => {setMedia(media => [...media, item.tag])}}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: '0%',alignSelf: 'flex-start', justifyContent: 'center'}}>
-          <Image style={{ width: 40, height: 40}} source={item.img} />
-          <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", fontSize: 16}}>{item.name}</Text>
+          <Image style={{ width: 40, height: 40, alignSelf: "flex-start", marginTop: 10, marginLeft: 8}} source={item.img} />
+          <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", marginTop: 22, marginLeft: 6, fontSize: 16}}>{item.name}</Text>
         </View>
     </TouchableHighlight>
     );
 
     const renderGenre = ({item}) => (
         <TouchableHighlight style={styles.filterButton} onPress={() => {setGenre(genre => [...genre, item.tag])}}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Image style={{ width: 40, height: 40}} source={item.img} />
-            <Text>{item.name}</Text>
-          </View>
+         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: '0%',alignSelf: 'flex-start', justifyContent: 'center'}}>
+          <Image style={{ width: 40, height: 40, alignSelf: "flex-start", marginTop: 10, marginLeft: 8}} source={item.img} />
+          <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", marginTop: 22, marginLeft: 6, fontSize: 16}}>{item.name}</Text>
+        </View>
       </TouchableHighlight>
     );
+
+    const renderSort = ({item}) => (
+      <TouchableHighlight style={styles.filterButton} onPress={() => {setSort(sort => [...sort, item.tag])}}>
+       <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: '0%',alignSelf: 'flex-start', justifyContent: 'center'}}>
+        <Image style={{ width: 35, height: 35, alignSelf: "flex-start", marginTop: 15, marginLeft: 12}} source={item.img} />
+        <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", marginTop: 22, marginLeft: 12, fontSize: 16}}>{item.name}</Text>
+      </View>
+    </TouchableHighlight>
+  );
     return (
       <View style={styles.container}>
         <View>
             <Text style={styles.title}>Filter Media</Text> 
         </View>
         <View style= {styles.filterBody}> 
-          <Text style = {styles.labels}> Category</Text>
-            <FlatList
-              data={category}
-              renderItem={renderItem}
-              keyExtractor={item => item.name}
-              numColumns={2}
-              style={{marginBottom: 1}}
-              contentContainerStyle={{ paddingVertical: 5 }}
-            />
-            <Text style = {styles.labels}>Genre</Text>
-            <FlatList 
+          <Text style = {styles.labels}> Category</Text> 
+          <FlatList
+                data={category}
+                renderItem={renderItem}
+                keyExtractor={item => item.name}
+                numColumns={2}
+                style={{}}
+                contentContainerStyle={{}}
+          />  
+          <Text style = {styles.labels}>Genre</Text>
+          <FlatList 
             data = {genres}
             renderItem = {renderGenre}
             keyExtractor= {item => item.name}
-            numColums = {2}
+            numColumns={2}
             style={{}}
-            contentContainerStyle = {{paddingVertical: 10}}
-           /> 
+            contentContainerStyle = {{}}
+          />  
+          <Text style = {styles.labels}> Sort </Text>
+          <FlatList 
+            data = {sorts}
+            renderItem = {renderSort}
+            keyExtractor= {item => item.name}
+            numColumns={2}
+            style={{}}
+            contentContainerStyle = {{}}
+          />  
         </View>
       </View>
     );
@@ -338,22 +369,23 @@ function Filter({ route, navigation }) {
   }
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: "center"
   },
   labels: {
     fontFamily: "OpenSans_600SemiBold",
-    fontSize: 18,
-    color: "#006BA6", 
-    marginBottom
+    fontSize: 16,
+    color: "#006BA6",
+    height: 22
   },
   filterBody: {
     backgroundColor: "#D9F0FF", 
     borderRadius: 70, 
     width: 321,
-    height: 643,
+    height: 600,
     alignSelf: "center",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 5
   },
   title: {
     fontFamily: "OpenSans_800ExtraBold",
@@ -385,7 +417,7 @@ const styles = StyleSheet.create({
   body: {
     left: 15,
     width: 321,
-    height: 643,
+    height: 400,
     position: "absolute",
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 70,

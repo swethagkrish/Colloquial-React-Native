@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserAuthProvider } from './UserAuthProvider';
 import Navigate from './Naivgate';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 /**
  * Wrap all providers here
@@ -8,8 +9,11 @@ import Navigate from './Naivgate';
 
 export default function Providers() {
   return (
-    <UserAuthProvider>
-      <Navigate />
-    </UserAuthProvider>
+    <PaperProvider>
+      <UserAuthProvider>
+        <Navigate />
+      </UserAuthProvider>
+    </PaperProvider>
+    
   );
 }

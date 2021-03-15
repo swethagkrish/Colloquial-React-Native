@@ -9,7 +9,7 @@ import Profile from '../screens/Profile'
 import { icons, COLORS } from "../components";
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
-import Chat from '../screens/Chat'
+import ChatNavigation from './ChatNavigation'
 
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +59,7 @@ const Tabs = () => {
             />
             <Tab.Screen
                 name="Chat"
-                component={Chat}
+                component={ChatNavigation}
             />
             <Tab.Screen
                 name="MediaNavigation"
