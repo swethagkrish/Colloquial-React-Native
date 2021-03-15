@@ -12,16 +12,43 @@ export default function Chatroom() {
         .collection('threads')
         .onSnapshot((querySnapshot) => {
             const threads = querySnapshot.docs.map(documentSnapshot => {
-                
-            })
-        })
-    })
+                return {
+                  _id: documentSnapshot.id,
+                  // give defaults
+                  name: '',
+      
+                  latestMessage: {
+                    text: ''
+                  },
+                  ...documentSnapshot.data()
+                };
+            });
+
+            setThread(threads);
+        });
+
+        return () => unscrubscribe();
+    }, []);
   return (
     <View style={styles.container}>
-      <FormButton
-        modeValue='contained'
-        title='Add Room'
-        onPress={() => navigation.navigate('AddRoom')}
+      <FlatList
+        data={thread}
+        keyExtractor={item => item._id}
+        ItemSeparatorComponent={() => <Divider />}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Room', { thread: item })}
+          >
+            <List.Item
+              title={item.name}
+              description={item.latestMessage.text}
+              titleNumberOfLines={1}
+              titleStyle={styles.listTitle}
+              descriptionStyle={styles.listDescription}
+              descriptionNumberOfLines={1}
+            />
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
@@ -30,8 +57,12 @@ export default function Chatroom() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f5f5f5',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flex: 1
+  },
+  listTitle: {
+    fontSize: 22
+  },
+  listDescription: {
+    fontSize: 16
   }
 });

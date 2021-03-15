@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button, FlatList, Image} from "react-native";
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button, FlatList, Image, ScrollView} from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import {MaterialCommunityIconsIcon} from "@expo/vector-icons";
 import {FontAwesomeIcon} from "@expo/vector-icons";
@@ -121,7 +121,7 @@ function Filter({ route, navigation }) {
     </TouchableHighlight>
   );
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{alignItems: "center"}}>
         <View>
             <Text style={styles.title}>Filter Media</Text> 
         </View>
@@ -154,222 +154,18 @@ function Filter({ route, navigation }) {
             contentContainerStyle = {{}}
           />  
         </View>
-      </View>
-    );
-  /*return (
-    <View>
-      <View>
-        <Text style={styles.category}>Category</Text>
-      </View>
-      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'book'])}}>
-        <Text>Book</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'movie'])}}>
-        <Text>Movie</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'tv'])}}>
-        <Text>TV Shows</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setMedia(media => [...media, 'music'])}}>
-        <Text>Music</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'adventure'])}}>
-        <Text>Action</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'comedy'])}}>
-        <Text>Comedy</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'drama'])}}>
-        <Text>Drama</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'thriller'])}}>
-        <Text>Thriller</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'horror'])}}>
-        <Text>Horror</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => {setGenre(genre => [...genre, 'romance'])}}>
-        <Text>Romance</Text>
-      </TouchableHighlight>
-      <Button title="Filter" onPress={filterMedia}/>
-    </View> */
-    /*<View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.filterBodyStack}>
-        <View style={styles.filterBody}>
-          <View style={styles.bodyStack}>
-            <View style={styles.body}>
-              <Text style={styles.category}>Category</Text>
-              <View style={styles.bookButtonRow}>
-                <View style={styles.bookButton}>
-                  <View style={styles.booButtonStack}>
-                    <View style={styles.booButton}>
-                      <EntypoIcon
-                        name="book"
-                        style={styles.bookEmoji}
-                      ></EntypoIcon>
-                    </View>
-                    <Text style={styles.books}>Books</Text>
-                  </View>
-                </View>
-                <View style={styles.tVShowsButton}>
-                  <View style={styles.tvsButton}>
-                    <View style={styles.tVEmojiRow}>
-                      <MaterialCommunityIconsIcon
-                        name="television-classic"
-                        style={styles.tVEmoji}
-                      ></MaterialCommunityIconsIcon>
-                      <Text style={styles.tvShows}>TV Shows</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.moviesButtonRow}>
-                <View style={styles.moviesButton}>
-                  <View style={styles.movButton}>
-                    <View style={styles.movieEmojiRow}>
-                      <MaterialCommunityIconsIcon
-                        name="video-vintage"
-                        style={styles.movieEmoji}
-                      ></MaterialCommunityIconsIcon>
-                      <Text style={styles.movies}>Movies</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.musicButton}>
-                  <View style={styles.musButton}>
-                    <View style={styles.musicEmojiRow}>
-                      <FontAwesomeIcon
-                        name="music"
-                        style={styles.musicEmoji}
-                      ></FontAwesomeIcon>
-                      <Text style={styles.music}>Music</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <Text style={styles.genre}>Genre</Text>
-              <View style={styles.actionButtonRow}>
-                <View style={styles.actionButton}>
-                  <View style={styles.actButton}>
-                    <View style={styles.actionEmojiRow}>
-                      <SimpleLineIconsIcon
-                        name="target"
-                        style={styles.actionEmoji}
-                      ></SimpleLineIconsIcon>
-                      <Text style={styles.action}>Action</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.comedyButton}>
-                  <View style={styles.comButton}>
-                    <View style={styles.comedyEmojiRow}>
-                      <IoniconsIcon
-                        name="ios-happy"
-                        style={styles.comedyEmoji}
-                      ></IoniconsIcon>
-                      <Text style={styles.comedy}>Comedy</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.dramaButtonRow}>
-                <View style={styles.dramaButton}>
-                  <View style={styles.draButton}>
-                    <View style={styles.dramaEmojiRow}>
-                      <EntypoIcon
-                        name="mask"
-                        style={styles.dramaEmoji}
-                      ></EntypoIcon>
-                      <Text style={styles.drama}>Drama</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.horrorButton}>
-                  <View style={styles.horButton}>
-                    <View style={styles.horrorEmojiRow}>
-                      <MaterialCommunityIconsIcon
-                        name="ghost"
-                        style={styles.horrorEmoji}
-                      ></MaterialCommunityIconsIcon>
-                      <Text style={styles.horror}>Horror</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.thrillerButtonRow}>
-                <View style={styles.thrillerButton}>
-                  <View style={styles.thrButton}>
-                    <View style={styles.thrillerEmojiRow}>
-                      <MaterialCommunityIconsIcon
-                        name="knife"
-                        style={styles.thrillerEmoji}
-                      ></MaterialCommunityIconsIcon>
-                      <Text style={styles.thriller}>Thriller</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.romanceButton}>
-                  <View style={styles.romButtonStack}>
-                    <View style={styles.romButton}>
-                      <MaterialCommunityIconsIcon
-                        name="heart"
-                        style={styles.romanceEmoji}
-                      ></MaterialCommunityIconsIcon>
-                    </View>
-                    <Text style={styles.romance}>Romance</Text>
-                  </View>
-                </View>
-              </View>
-              <Text style={styles.sort}>Sort</Text>
-              <View style={styles.recentSortButtonRow}>
-                <View style={styles.recentSortButton}>
-                  <View style={styles.mosRecButtonStack}>
-                    <View style={styles.mosRecButton}>
-                      <FontAwesomeIcon
-                        name="calendar"
-                        style={styles.calendar}
-                      ></FontAwesomeIcon>
-                    </View>
-                    <Text style={styles.mostRecent}>Most Recent</Text>
-                  </View>
-                </View>
-                <View style={styles.alphaSortButton}>
-                  <View style={styles.aZButtonStack}>
-                    <View style={styles.aZButton}>
-                      <MaterialCommunityIconsIcon
-                        name="sort-alphabetical"
-                        style={styles.aZ}
-                      ></MaterialCommunityIconsIcon>
-                    </View>
-                    <Text style={styles.alphabetical}>Alphabetical</Text>
-                  </View>
-                </View>
-              </View>
+        <TouchableOpacity onPress={filterMedia}>
+            <View style ={styles.button}>
+            <Image style = {styles.filterSheet} source ={require('../assets/emojis/filter.png')} />
+            <Text style = {styles.filterText}>Filter Media</Text>
             </View>
-            <Text style={styles.filters}>Filters</Text>
-          </View>
-        </View>
-        <Text style={styles.mediaRecommendations}>Media Recommendations</Text>
-        <BackArrow style={styles.backArrow}></BackArrow>
-      </View>
-      <View style={styles.filterMediaButton}>
-        <View style={styles.filButtonStack}>
-          <View style={styles.filButton}>
-            <Text style={styles.filterMedia}>Filter Media</Text>
-          </View>
-          <MaterialCommunityIconsIcon
-            name="filter-variant"
-            style={styles.filterEmoji}
-          ></MaterialCommunityIconsIcon>
-        </View>
-      </View>
-      <Homebar style={styles.homebar}></Homebar>
-    </View>*/
+          </TouchableOpacity>
+      </ScrollView>
+    );
   }
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center"
+    
   },
   labels: {
     fontFamily: "OpenSans_600SemiBold",
@@ -463,14 +259,14 @@ const styles = StyleSheet.create({
     marginTop: 13,
     marginLeft: 24
   },
-  filButton: {
-    top: 9,
-    left: 0,
+  button: {
+    marginTop: 10,
+    marginBottom: 20,
     width: 325,
-    height: 68,
-    position: "absolute",
+    height: 80,
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 82,
+    marginBottom: "3%",
     shadowColor: "rgba(0,0,0,1)",
     shadowOffset: {
       width: 3,
@@ -478,25 +274,25 @@ const styles = StyleSheet.create({
     },
     elevation: 5,
     shadowOpacity: 1,
-    shadowRadius: 0
+    shadowRadius: 0,
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignSelf : 'center'
   },
-  filterMedia: {
+  filterText: {
     fontFamily: "OpenSans_700Bold",
     color: "#121212",
-    height: 57,
-    width: 102,
     fontSize: 20,
-    textAlign: "center",
-    marginTop: 6,
-    marginLeft: 157
+    alignSelf: "center",
+    justifyContent: "center",
+    marginRight: 60
   },
-  filterEmoji: {
-    color: "rgba(0,107,166,1)",
-    fontSize: 80
-  },
-  filButtonStack: {
-    width: 325,
-    height: 87
+  filterSheet: {
+    height: 40,
+    width: 40,
+    alignSelf: "center",
+    justifyContent: "center",
+    marginLeft: 80
   },
   homebar: {
     width: 362,

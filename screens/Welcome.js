@@ -24,18 +24,17 @@ function Welcome({ navigation }) {
               name="spotlight"
               style={styles.spotlightIcon}
           ></MaterialCommunityIconsIcon>
-          <Text style = {styles.spotlightTitle}>Spotlighted Media</Text>
+          <Text style = {styles.spotlightTitle}> Spotlighted Media</Text>
         </View>
         <Card containerStyle = {styles.bookmark}>
-          <Card.Title>Media Name</Card.Title>
-          <Card.Divider/>
-          <Card.Image>
+          <Card.Title style = {{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", size: 18}}>Media Name</Card.Title>
+          <Card.Image style = {{height: 150, width: 200}}>
             
           </Card.Image>
         </Card>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%',alignSelf: 'flex-start' }}>
           <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
-          <Text style = {styles.chatNotifications}>  no new notifications</Text>
+          <Text style = {styles.chatNotifications}>  No new notifications</Text>
         </View>
       </View>
     
@@ -91,7 +90,8 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     flexDirection: 'row', 
     justifyContent: 'space-between', 
-    alignSelf : 'center'
+    alignSelf : 'center', 
+    marginTop: 20
   },
   emojiContainer: {
     width: 60, 
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   body: {
     width: 315,
-    height: 534,
+    height: 700,
     backgroundColor: "rgba(217,240,255,0.75)",
     borderRadius: 70
   },
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
   },
   notificationsStack: {
     width: 296,
-    height: 127,
+    height: 100,
     marginTop: 10,
     marginLeft: 4
   },
   bookmark: {
-    height: 300,
+    height: 250,
     width: 231,
     borderRadius: 43,
     backgroundColor: '#FF8600'
@@ -181,7 +181,8 @@ const styles = StyleSheet.create({
     width: 332,
     textAlign: "center",
     fontSize: 48,
-    alignSelf: "center"
+    alignSelf: "center",
+    marginBottom: 30
   },
   book: {
     top: 0,

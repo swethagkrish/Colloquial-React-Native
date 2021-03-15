@@ -1,77 +1,32 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import UserAuthContext from "../navigation/UserAuthProvider"
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Button } from 'react-native-elements'
 import { firestore } from '../components/Firebase/method'
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import BackArrow from "../components/stuff/BackArrow";
-import Homebar from "../components/stuff/Homebar";
 
-function SelectedMedia({route, navigation}) {
-  const media = route.params.media;
-  const image = route.params.image;
-  const { user, setUser } = useContext(UserAuthContext);
+const SelectedMedia = (route) => {
+  const media = route.route.params.media;
+  //const { user } = useContext(UserAuthContext);
 
-  const save = () => {
+  //user = user.toJSON();
+
+  /*const save = () => {
     firestore.collection('users');
-  }
+  }*/
 
   return (
     <View>
       <View>
-        <Image style={{ width: 100, height: 170}} source={{uri: image}}/>
+        <Image style={{ width: 100, height: 170}} source={{uri: media.image}} />
         <ScrollView>
           <Text>{media.summary}</Text>
         </ScrollView>
         <Text>Rating: No rating at the moment</Text>
       </View>
-      <Button title='View Rating' type='outline' onPress={() => {navigation.navigate('Review', {id: media.id})}}/>
-      <Button title='Write Review' type='outline' onPress={() => {navigation.navigate('WriteReview', {mediaID: media.id, userID: user.id})}} />
+      <Button title='View Rating' type='outline' onPress={() => {navigation.navigate('Review', {id: media.id})}} />
+      <Button title='Write Review' type='outline' onPress={() => {navigation.navigate('WriteReview', {mediaID: media.id, userID: user.uid})}} />
       <Button title='Add to Bookmark' type='outline' onPress={() => {save}} />
     </View>
-    /*<View style={styles.container}>
-      <View style={styles.viewRatingButtonRow}>
-        <View style={styles.viewRatingButton}>
-          <View style={styles.viewRatingBody}>
-            <FontAwesomeIcon name="star" style={styles.star}></FontAwesomeIcon>
-            <Text style={styles.viewRating}>View {"\n"}Rating</Text>
-          </View>
-        </View>
-        <View style={styles.writeReviewButton}>
-          <View style={styles.writeReviewBody}>
-            <FontAwesomeIcon
-              name="pencil"
-              style={styles.write}
-            ></FontAwesomeIcon>
-            <Text style={styles.writeReview}>Write {"\n"}Review</Text>
-          </View>
-        </View>
-        <View style={styles.saveButton}>
-          <View style={styles.saveBody}>
-            <MaterialCommunityIconsIcon
-              name="bookmark"
-              style={styles.bookmark}
-            ></MaterialCommunityIconsIcon>
-            <Text style={styles.save}>Save</Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.mediaBodyStackStack}>
-        <View style={styles.mediaBodyStack}>
-          <View style={styles.mediaBody}>
-            <View style={styles.body}>
-              <View style={styles.photo}></View>
-              <Text style={styles.summary}>Summary</Text>
-              <Text style={styles.rating}>Rating</Text>
-            </View>
-          </View>
-          <BackArrow style={styles.backArrow}></BackArrow>
-        </View>
-        <Text style={styles.title}>Name (Year)</Text>
-      </View>
-      <Homebar style={styles.homebar}></Homebar>
-    </View>*/
   );
 }
 
@@ -156,7 +111,7 @@ const styles = StyleSheet.create({
     width: 94,
     height: 142,
     marginLeft: 22
-  },
+  }, 
   saveBody: {
     width: 94,
     height: 142,

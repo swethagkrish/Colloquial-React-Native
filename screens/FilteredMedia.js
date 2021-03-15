@@ -1,11 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, ScrollView} from "react-native";
 //import MediaTitles from "../components/MediaTitles";
 import Homebar from "../components/stuff/Homebar";
 import BackArrow from "../components/stuff/BackArrow";
 import { database } from '../components/Firebase/method'
 
-function FilteredMedia({ route, navigation}) {
+function FilteredMedia({ route, navigation }) {
   const selectedGenre = route.params.gen;
   const selectedMedia = route.params.mediaSelected;
   const selectLanguage = route.params.lang;
@@ -14,15 +14,14 @@ function FilteredMedia({ route, navigation}) {
   const [movieList, setMovie] = useState([]);
   const [songList, setSong] = useState([]);
 
+  var image = "https://img.icons8.com/ios-filled/100/000000/no-image.png";
+  var summary = 'No summary';
   var rootRef = database.ref(selectLanguage);
 
   useEffect(() => {
     for (let i = 0; i < selectedMedia.length; i++) {
       rootRef.child(selectedMedia[i]).get().then(function(snapshot) {
         snapshot.forEach(function(childShot) {
-          var summary = 'No summary';
-          var image = "https://img.icons8.com/ios-filled/100/000000/no-image.png";
-  
           if (selectedMedia[i] == 'book') {
             if (childShot.child('volumeInfo').hasChild('description')) {
               summary = childShot.child('volumeInfo/description').val();
@@ -82,51 +81,55 @@ function FilteredMedia({ route, navigation}) {
       imageLink = link.slice(0, 4) + 's' + link.slice(4);
     }
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('SelectedMedia', {media: item, image: imageLink})}>
-        <Text>{item.title}</Text>
-        <Image
-          style={{ width: 100, height: 170}}
-          source={{uri: imageLink}}
-          resizeMode='cover'
-        />
+      <TouchableOpacity onPress={() => navigation.navigate('SelectedMedia', {media: item})}>
+         <View style = {styles.buttons} >
+          <Image
+            style={{ width: 100, height: 130, alignSelf: "center", marginTop: 20}}
+            source={{uri: imageLink}}
+            resizeMode='cover'
+          />
+          <Text style = {styles.label}>{item.title}</Text>
+        </View>
       </TouchableOpacity>
     )
     
   }
 
   const renderMovie = ({ item }) => {
-    <TouchableOpacity>
-        <Text>{item.title}</Text>
-        <Image
-          style={{ width: 100, height: 70}}
-          source={item.image}
-        />
-    </TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate('SelectedMedia', {media: item})}>
+    <View style = {styles.buttons} >
+     <Image
+       style={{ width: 100, height: 130, alignSelf: "center", marginTop: 20}}
+       source={{uri: imageLink}}
+       resizeMode='cover'
+     />
+     <Text style = {styles.label}>{item.title}</Text>
+    </View>
+  </TouchableOpacity>
   }
 
   const renderSong = ({ item }) => {
-    <TouchableOpacity>
-        <Text>{item.title}</Text>
-        <Image
-          style={{ width: 100, height: 70}}
-          source={item.image}
-        />
-        <Text>{item.artist}</Text>
-    </TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('SelectedMedia', {media: item})}>
+    <View style = {styles.buttons} >
+     <Image
+       style={{ width: 100, height: 130, alignSelf: "center", marginTop: 20}}
+       source={{uri: imageLink}}
+       resizeMode='cover'
+     />
+     <Text style = {styles.label}>{item.title}</Text>
+   </View>
+ </TouchableOpacity>
   }
 
   function displayBook() {
     return (
       <View>
-          <View>
-              <Text>Book</Text>
-          </View> 
           <FlatList
             data={book}
             renderItem={renderBook}
             keyExtractor={item => item.title}
             numColumns={2}
-            contentContainerStyle={{ paddingVertical: 5 }}
+            contentContainerStyle={{ paddingVertical: 10 }}
           />
     </View>
     )
@@ -135,16 +138,13 @@ function FilteredMedia({ route, navigation}) {
   function displayMovie() {
     return (
       <View style={{ flex: 1 }}>
-          <View style={styles.container}>
-              <Text>Movie</Text>
-          </View> 
           <FlatList
             data={movieList}
             renderItem={renderMovie}
             keyExtractor={item => item.title}
             numColumns={2}
             style={{ flex: 1 }}
-            contentContainerStyle={{ paddingVertical: 5 }}
+            contentContainerStyle={{ paddingVertical: 10 }}
           />
      </View>
     )
@@ -153,22 +153,20 @@ function FilteredMedia({ route, navigation}) {
   function displaySong() {
     return (
       <View style={{ flex: 1 }}>
-          <View style={styles.container}>
-              <Text>Song</Text>
-          </View> 
           <FlatList
             data={songList}
             renderItem={renderSong}
             keyExtractor={item => item.title}
             numColumns={2}
             style={{ flex: 1 }}
-            contentContainerStyle={{ paddingVertical: 5 }}
+            contentContainerStyle={{ paddingVertical: 10 }}
           />
       </View>
     )
   }
   return (
-    <View>
+    <ScrollView style={styles.container} contentContainerStyle={{alignItems: "center"}}>
+       <Text style = {styles.title}>Filtered Media</Text>
       <View>
         {displayBook()}
       </View>
@@ -178,22 +176,7 @@ function FilteredMedia({ route, navigation}) {
       <View>
         {displaySong()}
       </View>
-    </View>
-    /*<View style={styles.container}>
-      <View style={styles.mediaTitlesRow}>
-        <MediaTitles style={styles.mediaTitles}></MediaTitles>
-        <MediaTitles style={styles.mediaTitles2}></MediaTitles>
-      </View>
-      <Homebar style={styles.homebar}></Homebar>
-      <View style={styles.backArrowRow}>
-        <BackArrow style={styles.backArrow}></BackArrow>
-        <Text style={styles.text}>Filtered Media</Text>
-      </View>
-      <View style={styles.mediaTitles3Row}>
-        <MediaTitles style={styles.mediaTitles3}></MediaTitles>
-        <MediaTitles style={styles.mediaTitles4}></MediaTitles>
-      </View>
-    </View>*/
+    </ScrollView>
   );
 }
 
@@ -201,10 +184,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  title: {
+    fontFamily: "OpenSans_800ExtraBold",
+    color: "rgba(27,6,94,1)",
+    fontSize: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center"
+  }, 
   mediaTitles: {
     height: 221,
     width: 154
   },
+  buttons: {
+    width: 154,
+    height: 221,
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 21,
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    marginRight: 15, 
+    marginBottom: 15
+  }, 
+  label: {
+    fontFamily: "OpenSans_600SemiBold",
+    fontSize: 12,
+    color: "#006BA6",
+    alignSelf: "center"
+  }, 
   mediaTitles2: {
     width: 154,
     height: 221,
