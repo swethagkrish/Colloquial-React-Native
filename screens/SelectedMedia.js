@@ -21,9 +21,11 @@ const SelectedMedia = (route, navigation) => {
         <View style = {styles.body}> 
           <Image style={{ width: 260, height: 148, marginTop: 40,alignSelf: "center"}} source={{uri: media.image}} />
           <Text style ={styles.summaryTitle}> Summary </Text>
-          <View style = {styles.summaryBox}> 
-            <Text style = {styles.summaryText}>{media.summary}</Text>
-          </View>
+          <ScrollView>
+            <View style = {styles.summaryBox}> 
+              <Text style = {styles.summaryText}>{media.summary}</Text>
+            </View>
+          </ScrollView>
           <Text style = {styles.summaryTitle}>Rating</Text>
           <Text style = {styles.summaryText}> No rating available </Text>
         </View>
@@ -39,6 +41,7 @@ const SelectedMedia = (route, navigation) => {
           <Text style = {styles.labelA}>Review</Text>
         </TouchableOpacity>
         <TouchableOpacity style = {styles.press} onPress={() => {save}}> 
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/bookmark.png")} />
           <Text style = {styles.labels}>Bookmark </Text>
         </TouchableOpacity>
       </View>
@@ -208,7 +211,7 @@ const styles = StyleSheet.create({
   }, 
   summaryText :{
     fontFamily: "OpenSans_400Regular",
-    fontSize: 12, 
+    fontSize: 18, 
     color: "rgba(0,0,0,1)",
     alignSelf: "center"
   },
