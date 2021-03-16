@@ -4,40 +4,76 @@ import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "rea
 import { Button } from 'react-native-elements'
 import { firestore } from '../components/Firebase/method'
 
-const SelectedMedia = (route) => {
+const SelectedMedia = (route, navigation) => {
   const media = route.route.params.media;
   //const { user } = useContext(UserAuthContext);
 
-  //user = user.toJSON();
+  //const currentUser = user.toJSON();
 
   /*const save = () => {
-    firestore.collection('users');
+    firestore.collection('users').doc(currentUser.uid).doc('bookmarks).add({image: media.image, name: media.title});
+    route.navigation.navigate('Bookmarks');
   }*/
-
+  
   return (
-    <View>
-      <View>
-        <Image style={{ width: 100, height: 170}} source={{uri: media.image}} />
-        <ScrollView>
-          <Text>{media.summary}</Text>
-        </ScrollView>
-        <Text>Rating: No rating at the moment</Text>
+    <View style={styles.container}>
+       <Text style = {styles.title}>{media.title}</Text>
+        <View style = {styles.body}> 
+          <Image style={{ width: 260, height: 148, marginTop: 40,alignSelf: "center"}} source={{uri: media.image}} />
+          <Text style ={styles.summaryTitle}> Summary </Text>
+          <View style = {styles.summaryBox}> 
+            <Text style = {styles.summaryText}>{media.summary}</Text>
+          </View>
+          <Text style = {styles.summaryTitle}>Rating</Text>
+          <Text style = {styles.summaryText}> No rating available </Text>
+        </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginLeft: 50, alignSelf : 'flex-start'}}>
+        <TouchableOpacity style = {styles.press}  onPress={() => {route.navigation.navigate('Review', {id: media.id})}}> 
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/star.png")} />
+          <Text style = {styles.labels}>View</Text>
+          <Text style = {styles.labelA}>Rating</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.press} onPress={() => {route.navigation.navigate('WriteReview', {mediaID: media.id, userID: user.uid})}}>
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/review.png")} />
+          <Text style = {styles.labels}>Write</Text>
+          <Text style = {styles.labelA}>Review</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.press} onPress={() => {save}}> 
+          <Text style = {styles.labels}>Bookmark </Text>
+        </TouchableOpacity>
       </View>
-      <Button title='View Rating' type='outline' onPress={() => {navigation.navigate('Review', {id: media.id})}} />
-      <Button title='Write Review' type='outline' onPress={() => {navigation.navigate('WriteReview', {mediaID: media.id, userID: user.uid})}} />
-      <Button title='Add to Bookmark' type='outline' onPress={() => {save}} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex:1,
+    height: 50,
+    alignItems: "center"
   },
   viewRatingButton: {
     width: 94,
     height: 142
   },
+  press: {
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 100,
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    width: 94,
+    height: 142,
+    marginRight: 25
+  }, 
+  image: {
+    
+  }, 
   viewRatingBody: {
     width: 94,
     height: 142,
@@ -75,19 +111,13 @@ const styles = StyleSheet.create({
     height: 142,
     marginLeft: 30
   },
-  writeReviewBody: {
-    width: 94,
-    height: 142,
+  body: {
+    width: 321,
+    height: 409,
     backgroundColor: "rgba(217,240,255,1)",
     borderRadius: 100,
-    shadowColor: "rgba(0,0,0,1)",
-    shadowOffset: {
-      width: 3,
-      height: 3
-    },
-    elevation: 5,
-    shadowOpacity: 1,
-    shadowRadius: 0
+    alignItems: "center",
+    alignSelf: "center"
   },
   write: {
     color: "rgba(0,107,166,1)",
@@ -157,12 +187,6 @@ const styles = StyleSheet.create({
     height: 409,
     position: "absolute"
   },
-  body: {
-    width: 321,
-    height: 409,
-    backgroundColor: "rgba(217,240,255,0.75)",
-    borderRadius: 62
-  },
   photo: {
     width: 260,
     height: 148,
@@ -171,25 +195,38 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     marginTop: 19,
     marginLeft: 28
+  }, 
+  summaryBox: {
+    height: 90,
+    width: 260
   },
-  summary: {
+  summaryTitle: {
     fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
-    height: 45,
-    width: 129,
     fontSize: 24,
-    marginTop: 15,
-    marginLeft: 104
+    height: 35
+  }, 
+  summaryText :{
+    fontFamily: "OpenSans_400Regular",
+    fontSize: 12, 
+    color: "rgba(0,0,0,1)",
+    alignSelf: "center"
   },
-  rating: {
+  labels: {
     fontFamily: "OpenSans_600SemiBold",
     color: "rgba(0,107,166,1)",
-    height: 39,
-    width: 82,
-    fontSize: 24,
-    marginTop: 91,
-    marginLeft: 120
+    fontSize: 18,
+    color: "#121212",
+    textAlign: "center",
+    marginTop: 10
   },
+  labelA: {
+    fontFamily: "OpenSans_600SemiBold",
+    color: "rgba(0,107,166,1)",
+    fontSize: 18,
+    color: "#121212",
+    textAlign: "center"
+  }, 
   backArrow: {
     position: "absolute",
     left: 0,
@@ -205,15 +242,11 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
   title: {
-    top: 15,
-    left: 43,
-    position: "absolute",
     fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
-    height: 46,
-    width: 291,
     fontSize: 36,
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom: 10
   },
   mediaBodyStackStack: {
     width: 334,

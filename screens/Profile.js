@@ -1,15 +1,28 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import ChangeProfile from "../components/stuff/ChangeProfile";
+import { Button } from 'react-native-elements'
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import Homebar from "../components/stuff/Homebar";
 import FeatherIcon from "react-native-vector-icons/Feather";
-import Svg, { Ellipse } from "react-native-svg";
+import { UserAuthContext } from '../navigation/UserAuthProvider';
+import { firestore } from '../components/Firebase/method';
 
 function Profile({navigation}) {
+  const { user } = useContext(UserAuthContext);
+  //const [email, setEmail];
+  const currentUser = user.toJSON();
+  //const email = firestore.collection('users').doc(user.uid).doc('email');
+
   return (
-    <View style={styles.container}>
+    <View>
+      <Text>{currentUser.uid}</Text>
+      <Text>{currentUser.email}</Text>
+      <Text>{currentUser.birthdate}</Text>
+      <Text>{currentUser.language}</Text>
+      <Button title='Change Password' type='outline' onPress={() => {route.navigation.navigate('Review', {id: media.id})}} />
+      <Button title='Delete Account' type='outline' onPress={() => {route.navigation.navigate('WriteReview', {mediaID: media.id, userID: currentUser.uid})}} />
+      <Button title='Change Levels' type='outline' onPress={() => {save}} />
+    </View>
+    /*<View style={styles.container}>
       <View style={styles.changePasswordButtonRow}>
         <View style={styles.changePasswordButton}>
           <View style={styles.changePasswordBodyStack}>
@@ -81,7 +94,7 @@ function Profile({navigation}) {
         </Svg>
         <Text style={styles.name}>Name</Text>
       </View>
-    </View>
+    </View>*/
   );
 }
 

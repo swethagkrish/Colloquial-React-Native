@@ -10,7 +10,107 @@ export default function SignUp({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [birthdate, setDate] = useState('')
+    const [birthdate, setDate] = useState(new Date())
+    const [language, setLanguage] = useState([]);
+
+    const items = [
+        {
+            name: 'German',
+            children: [
+                {
+                    level: 'German A1'
+                },
+                {
+                    level: 'German A2'
+                },
+                {
+                    level: 'German B1'
+                },
+                {
+                    level: 'German B2'
+                },
+                {
+                    level: 'German C1'
+                },
+                {
+                    level: 'German C2'
+                }
+            ]
+        },
+        {
+            name: 'French',
+            children: [
+                {
+                    level: 'French A1'
+                },
+                {
+                    level: 'French A2'
+                },
+                {
+                    level: 'French B1'
+                },
+                {
+                    level: 'French B2'
+                },
+                {
+                    level: 'French C1'
+                },
+                {
+                    level: 'French C2'
+                }
+            ]
+        },
+        {
+            name: 'Italian',
+            children: [
+                {
+                    level: 'Italian A1'
+                },
+                {
+                    level: 'Italian A2'
+                },
+                {
+                    level: 'Italian B1'
+                },
+                {
+                    level: 'Italian B2'
+                },
+                {
+                    level: 'Italian C1'
+                },
+                {
+                    level: 'Italian C2'
+                }
+            ]
+        },
+        {
+            name: 'Spanish',
+            children: [
+                {
+                    level: 'Spanish A1'
+                },
+                {
+                    level: 'Spanish A2'
+                },
+                {
+                    level: 'Spanish B1'
+                },
+                {
+                    level: 'Spanish B2'
+                },
+                {
+                    level: 'Spanish C1'
+                },
+                {
+                    level: 'Spanish C2'
+                }
+            ]
+        }
+    ]
+
+    const selectedLanguage = (selectedItems) => {
+        setLanguage(selectedItems);
+    }
 
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
@@ -21,7 +121,7 @@ export default function SignUp({navigation}) {
             alert("Passwords don't match.")
             return
         }
-        if (birthdate == '') {
+        if (birthdate == new Date()) {
             alert("Please choose a date")
             return
         }
@@ -34,6 +134,7 @@ export default function SignUp({navigation}) {
                     fullName,
                     birthdate,
                     email,
+                    language
                 };
                 const usersRef = firestore.collection('users')
                 usersRef
@@ -91,8 +192,19 @@ export default function SignUp({navigation}) {
                             },
                         }}
                         onDateChange={(birthdate) => {
-                        setDate(birthdate);
+                            setDate(new Date(birthdate));
                         }} />
+                </View>
+                <View>
+                    <SectionedMultiSelect
+                        items={items}
+                        subKey="children"
+                        selectText="Select your language level"
+                        showDropDowns={true}
+                        readOnlyHeadings={true}
+                        onSelectedItemsChange={selectedLanguage}
+                        selectedItems={language}
+                    />
                 </View>
                 <TextInput
                     style={styles.input}
