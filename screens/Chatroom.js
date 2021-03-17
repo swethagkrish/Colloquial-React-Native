@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { List, Divider } from 'react-native-paper';
 import FormButton from '../components/FormButton';
-import { firestore } from '../components/Firebase/method'
+import { firestore } from '../components/Firebase/method';
 
 export default function Chatroom() {
     const [thread, setThread] = useState([]);

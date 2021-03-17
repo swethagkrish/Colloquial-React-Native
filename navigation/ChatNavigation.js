@@ -1,9 +1,10 @@
 import React from 'react';
+import { TouchableOpacity, Image } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 import Chatroom from '../screens/Chatroom';
 import Chat from '../screens/Chat';
 import AddRoom from '../screens/AddRoom';
-import { IconButton } from 'react-native-paper';
+//import { IconButton } from 'react-native-paper';
 
 const Stack = createStackNavigator();
 const ChatStack = createStackNavigator();
@@ -13,12 +14,10 @@ function ChatNavigation() {
     <Stack.Navigator>
       <Stack.Screen name='Chatroom' component={Chatroom} options={({ navigation }) => ({
           headerRight: () => (
-            <IconButton
-              icon='message-plus'
-              size={28}
-              color='#ffffff'
-              onPress={() => navigation.navigate('AddRoom')}
-          />)
+            <TouchableOpacity onPress={() => navigation.navigate('AddRoom')}>
+              <Image source={require("../assets/icons/add.png")}/>
+            </TouchableOpacity>
+            )
       })}
             />
       <Stack.Screen name='Room'
