@@ -85,10 +85,12 @@ const WriteReview = (route, navigation) => {
               </View>
           </View>
         </View>
-        <TouchableOpacity styles = {styles.press}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25,  marginLeft: 30, alignSelf : 'flex-start'}}>
-            <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/changeProfile.png")} />
-            <Text> Save Media </Text>
+        <TouchableOpacity>
+          <View style = {styles.press}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25,  marginLeft: 30, alignSelf : 'flex-start'}}>
+              <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/save.png")} />
+              <Text style = {styles.saveReview}> Save Review </Text>
+            </View>
           </View>
         </TouchableOpacity>
       </View>
@@ -348,11 +350,9 @@ const styles = StyleSheet.create({
   saveReview: {
     fontFamily: "OpenSans_700Bold",
     color: "#121212",
-    height: 24,
-    width: 138,
     fontSize: 20,
-    marginLeft: 26,
-    marginTop: 10
+    marginTop: 5, 
+    marginLeft: 70
   },
   saveIconRow: {
     height: 44,
