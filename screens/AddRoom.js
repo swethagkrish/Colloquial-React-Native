@@ -6,5 +6,9 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 export default function AddRoom({navigation}) {
-    
+    const [room, setRoom] = useState('');
+
+    function create() {
+
+    }
 }

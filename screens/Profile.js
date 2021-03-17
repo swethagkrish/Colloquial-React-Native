@@ -1,26 +1,74 @@
-import React, { useContext } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Button } from 'react-native-elements'
-import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
-import FeatherIcon from "react-native-vector-icons/Feather";
+import React, { useContext, useState, useEffect } from "react";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { Button, Avatar } from 'react-native-elements'
 import { UserAuthContext } from '../navigation/UserAuthProvider';
-import { firestore } from '../components/Firebase/method';
+import { firestore, auth } from '../components/Firebase/method';
 
 function Profile({navigation}) {
   const { user } = useContext(UserAuthContext);
   //const [email, setEmail];
   const currentUser = user.toJSON();
   //const email = firestore.collection('users').doc(user.uid).doc('email');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+
+  firestore.collection('users').doc(currentUser.uid)
+    .get()
+    .then(doc => {
+      setName(doc.data().fullName);
+    });
+
+  const fullName = name.split(' ');
+  const firstName = fullName[0];
+  const lastName = fullName[1];
+  const initials = (firstName[0] || "") + (lastName[0] || "");
+  //const initials = 'UH';
 
   return (
-    <View>
-      <Text>{currentUser.uid}</Text>
-      <Text>{currentUser.email}</Text>
-      <Text>{currentUser.birthdate}</Text>
-      <Text>{currentUser.language}</Text>
-      <Button title='Change Password' type='outline' onPress={() => {route.navigation.navigate('Review', {id: media.id})}} />
-      <Button title='Delete Account' type='outline' onPress={() => {route.navigation.navigate('WriteReview', {mediaID: media.id, userID: currentUser.uid})}} />
-      <Button title='Change Levels' type='outline' onPress={() => {save}} />
+    <View style={styles.container}>
+      <Avatar
+					size="xlarge"
+					rounded
+					title={initials}
+					overlayContainerStyle={{ backgroundColor: '#FF8600' }}
+				/>
+      <Text style = {styles.title}>{name}</Text>
+      <View style = {styles.body}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: 50, alignSelf : 'flex-start'}}>
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/email.png")} />
+          <Text style = {styles.labels}>{currentUser.email}</Text>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: 50, alignSelf : 'flex-start'}}>
+          <Image style={{ width: 40, height: 40, alignSelf: "center"}} source = {require("../assets/emojis/changeLevelsShow.png")} />
+          <View>
+            <Text style = {styles.labelsB}>German A1</Text>
+            <Text style = {styles.labelsA}>French A1</Text> 
+            <Text style = {styles.labelsA}>Spanish B2</Text> 
+            <Text style = {styles.labelsA}>Italian A1</Text> 
+          </View>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: 50, alignSelf : 'flex-start'}}>
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/birthday.png")} />
+          <Text style = {styles.labels}>March 12th, 1998</Text>
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: 50, alignSelf : 'flex-start'}}>
+        <TouchableOpacity style = {styles.press}>
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/changeProfile.png")} />
+          <Text style = {styles.labelsC}>Change</Text>
+          <Text style = {styles.labelsD}>Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.press} >
+          <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/delete.png")} />
+          <Text style = {styles.labelsC}>Delete</Text>
+          <Text style = {styles.labelsD}>Account</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.press}>
+         <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/changeLevel.png")} />
+         <Text style = {styles.labelsC}>Change</Text>
+         <Text style = {styles.labelsD}>Levels</Text>
+        </TouchableOpacity>
+      </View>
     </View>
     /*<View style={styles.container}>
       <View style={styles.changePasswordButtonRow}>
@@ -100,7 +148,47 @@ function Profile({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    height: 50, 
+    alignItems: "center"
+  },
+  title: {
+    fontFamily: "OpenSans_800ExtraBold",
+    color: "rgba(27,6,94,1)",
+    fontSize: 48,
+    textAlign: "center",
+    marginBottom: 20
+  },
+  body: {
+    width: 321,
+    height: 300,
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 100,
+    alignSelf: "center"
+  },
+  labels: {
+    fontFamily: "OpenSans_600SemiBold",
+    color: "rgba(0,107,166,1)",
+    fontSize: 18,
+    color: "#121212",
+    textAlign: "center",
+    marginLeft: 30,
+    marginTop: 30
+  },
+  labelsB: {
+    fontFamily: "OpenSans_600SemiBold",
+    color: "rgba(0,107,166,1)",
+    fontSize: 18,
+    color: "#121212",
+    marginTop: 40,
+    marginLeft: 30
+  },
+  labelsA: {
+    fontFamily: "OpenSans_600SemiBold",
+    color: "rgba(0,107,166,1)",
+    fontSize: 18,
+    color: "#121212",
+    marginLeft: 30 
   },
   changePasswordButton: {
     width: 104,
@@ -171,6 +259,36 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 21
   },
+  press: {
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 100,
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    width: 94,
+    height: 142,
+    marginRight: 25
+  }, 
+  labelsC: {
+    fontFamily: "OpenSans_600SemiBold",
+    color: "rgba(0,107,166,1)",
+    fontSize: 18,
+    color: "#121212",
+    textAlign: "center",
+    marginTop: 10
+  },
+  labelsD: {
+    fontFamily: "OpenSans_600SemiBold",
+    color: "rgba(0,107,166,1)",
+    fontSize: 18,
+    color: "#121212",
+    textAlign: "center"
+  }, 
   deleteAccount: {
     fontFamily: "OpenSans_700Bold",
     color: "#121212",

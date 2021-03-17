@@ -1,19 +1,24 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { Card } from 'react-native-elements';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import Bookmark from "../components/stuff/Bookmark";
 import { Ionicons } from '@expo/vector-icons';
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import Homebar from "../components/stuff/Homebar";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import { ViewBase } from "react-native";
 import { Button } from "react-native-elements/dist/buttons/Button";
+import { auth } from '../components/Firebase/method';
 
 function Welcome({ navigation }) {
   const generate = () => {
     navigation.navigate('MediaNavigation', {screen: 'SelectLanguage'});
   }
+  
+  const signOut = () => {
+    console.log('log out');
+    auth.signOut();
+  }
+  
   return (
     <View style={styles.container}>
       <Text style = {styles.text}>Welcome</Text>
@@ -32,7 +37,7 @@ function Welcome({ navigation }) {
             
           </Card.Image>
         </Card>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between',marginLeft: '0%',alignSelf: 'flex-start' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: '0%',alignSelf: 'flex-start' }}>
           <Ionicons name="chatbox-sharp" size={50} color="rgba(0,107,166,1)"></Ionicons>
           <Text style = {styles.chatNotifications}>  No new notifications</Text>
         </View>
@@ -64,6 +69,14 @@ function Welcome({ navigation }) {
             <Text style={styles.generateRec}>Generate Media Recs</Text>
           </View>
       </TouchableOpacity>
+      <TouchableOpacity onPress={signOut}>
+        <View style = {styles.button}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25,  marginLeft: 30, alignSelf : 'flex-start'}}>
+        <Image style={{ width: 40, height: 40, alignSelf: "center"}} source = {require("../assets/emojis/logout.png")} />
+          <Text style={styles.logout}>Logout </Text>
+        </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -91,12 +104,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'space-between', 
     alignSelf : 'center', 
-    marginTop: 20
+    marginTop: 10
   },
   emojiContainer: {
     width: 60, 
     height: 60,
-    marginBottom: 5
+    marginBottom: 5,
+    marginTop: 5
   },
   notificationBody: {
     backgroundColor: "rgba(217,240,255,1)",
@@ -106,7 +120,7 @@ const styles = StyleSheet.create({
     height: 450,
     alignItems: "center",
     alignSelf: "center",
-    marginBottom: "5%"
+    marginBottom: 10
   },
   body: {
     width: 315,
@@ -128,7 +142,7 @@ const styles = StyleSheet.create({
   },
   spotlightTitle: {
     fontFamily: "OpenSans_700Bold",
-    color: "#121212",
+    color: "#000000",
     fontSize: 24,
     alignSelf: "center"
   },
@@ -157,7 +171,7 @@ const styles = StyleSheet.create({
   },
   chatNotifications: {
     fontFamily: "OpenSans_400Regular",
-    color: "#121212",
+    color: "#000000",
     fontSize: 18,
     marginTop: 10,
   },
@@ -182,7 +196,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 48,
     alignSelf: "center",
-    marginBottom: 30
+    marginBottom: 10
   },
   book: {
     top: 0,
@@ -234,6 +248,13 @@ const styles = StyleSheet.create({
     marginLeft: 35,
     marginTop: 30
   },
+  logout: {
+    fontFamily: "OpenSans_700Bold",
+    color: "#121212",
+    fontSize: 20,
+    marginTop: 5, 
+    marginLeft: 70
+  },
   tVStack: {
     width: 273,
     height: 67,
@@ -244,7 +265,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     marginLeft: 19,
-    marginTop: 1
+    marginTop: 5
   }
 });
 

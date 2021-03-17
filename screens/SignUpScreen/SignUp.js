@@ -4,6 +4,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import { signUp, firestore } from '../../components/Firebase/method'
 import DatePicker from 'react-native-datepicker';
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function SignUp({navigation}) {
     const [fullName, setFullName] = useState('')
@@ -132,9 +134,7 @@ export default function SignUp({navigation}) {
                 const data = {
                     id: uid,
                     fullName,
-                    birthdate,
                     email,
-                    language
                 };
                 const usersRef = firestore.collection('users')
                 usersRef
@@ -170,7 +170,7 @@ export default function SignUp({navigation}) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <View>
+                {/*<View>
                     <Text>Your birthdate</Text>
                     <DatePicker
                         date={birthdate} //initial date from state
@@ -198,6 +198,7 @@ export default function SignUp({navigation}) {
                 <View>
                     <SectionedMultiSelect
                         items={items}
+                        IconRenderer={Icon}
                         subKey="children"
                         selectText="Select your language level"
                         showDropDowns={true}
@@ -205,7 +206,7 @@ export default function SignUp({navigation}) {
                         onSelectedItemsChange={selectedLanguage}
                         selectedItems={language}
                     />
-                </View>
+                </View>*/}
                 <TextInput
                     style={styles.input}
                     placeholder='E-mail'

@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import firebaseConfig from './config'
 import 'firebase/auth';
 import 'firebase/firestore';
+import { Alert } from 'react-native';
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -21,3 +22,14 @@ export const signUp = (email, password) =>
 export const logout = () => auth.signOut();
 
 export const resetPass = email => auth.sendPasswordResetEmail(email);
+
+export const reauthenticate = (pass) => {
+    var user = auth.currentUser;
+    var credential = firebase.auth.EmailAuthProvider.credential(user.email, pass);
+    return user.reauthenticateWithCredential(credential);
+} 
+
+export const changePass = (currentPass, newPass) => {
+    reauthenticate(currentPass).then();
+}
+

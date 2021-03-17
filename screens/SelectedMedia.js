@@ -6,14 +6,12 @@ import { firestore } from '../components/Firebase/method'
 
 const SelectedMedia = (route, navigation) => {
   const media = route.route.params.media;
-  //const { user } = useContext(UserAuthContext);
 
-  //const currentUser = user.toJSON();
-
-  /*const save = () => {
-    firestore.collection('users').doc(currentUser.uid).doc('bookmarks).add({image: media.image, name: media.title});
+  const save = () => {
+    //firestore.collection('users').doc(currentUser.uid).doc('bookmarks').add({image: media.image, name: media.title});
+    console.log('save');
     route.navigation.navigate('Bookmarks');
-  }*/
+  }
   
   return (
     <View style={styles.container}>
@@ -35,12 +33,12 @@ const SelectedMedia = (route, navigation) => {
           <Text style = {styles.labels}>View</Text>
           <Text style = {styles.labelA}>Rating</Text>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.press} onPress={() => {route.navigation.navigate('WriteReview', {mediaID: media.id, userID: user.uid})}}>
+        <TouchableOpacity style = {styles.press} onPress={() => {route.navigation.navigate('WriteReview', {id: media.id, title: media.title})}}>
           <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/review.png")} />
           <Text style = {styles.labels}>Write</Text>
           <Text style = {styles.labelA}>Review</Text>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.press} onPress={() => {save}}> 
+        <TouchableOpacity style = {styles.press} onPress={save}> 
           <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/bookmark.png")} />
           <Text style = {styles.labels}>Bookmark </Text>
         </TouchableOpacity>
@@ -73,9 +71,6 @@ const styles = StyleSheet.create({
     width: 94,
     height: 142,
     marginRight: 25
-  }, 
-  image: {
-    
   }, 
   viewRatingBody: {
     width: 94,

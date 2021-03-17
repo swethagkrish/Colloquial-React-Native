@@ -5,8 +5,21 @@ import ProfilePic from "../components/stuff/ProfilePic";
 //import ReviewComponent from "../components/stuff/ReviewComponent";
 import Homebar from "../components/stuff/Homebar";
 import BackArrow from "../components/stuff/BackArrow";
+import { firestore } from '../components/Firebase/method';
+import { UserAuthContext } from '../navigation/UserAuthProvider';
 
-function Review({ route, navigation }) {
+const Review = ({ route, navigation }) => {
+  const media = route.route.params.id;
+  const [user, setUser] = useState([]);
+
+  const retrieve = (media) => {
+    firestore.collection('reviews')
+    .doc(media).collection('posts')
+    .get()
+    .then(query => {
+      
+    })
+  }
   return (
     <View style={styles.container}>
       <View style={styles.profileReview}>

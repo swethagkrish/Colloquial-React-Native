@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GiftedChat, Bubble, Send, SystemMessage } from 'react-native-gifted-chat';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
-import { IconButton } from 'react-native-paper';
 import { firestore } from '../components/Firebase/method';
 import { UserAuthContext } from '../navigation/UserAuthProvider';
 
@@ -104,7 +103,7 @@ export default function Chat({route}) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <IconButton icon='send-circle' size={32} color='#6646ee' />
+          <Image source={require('../assets/icons/add.png')} />
         </View>
       </Send>
     );
@@ -113,7 +112,7 @@ export default function Chat({route}) {
   function scrollToBottom(props) {
     return (
       <View style={styles.bottomComponentContainer}>
-        <IconButton icon='chevron-double-down' size={36} color='#6646ee' />
+        <Image source={require('../assets/icons/down.png')} />
       </View>
     );
   }

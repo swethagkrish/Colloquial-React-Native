@@ -1,20 +1,99 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import React, { useState, useContext } from "react";
+import { StyleSheet, View, Text, TextInput, Alert, TouchableOpacity, Image} from "react-native";
 import BackArrow from "../components/stuff/BackArrow";
 import Homebar from "../components/stuff/Homebar";
 import Icon from "react-native-vector-icons/Entypo";
-import { firestore } from '../components/Firebase/method'
+import { firestore } from '../components/Firebase/method';
+import { UserAuthContext } from '../navigation/UserAuthProvider';
 
-function WriteReview({ route, navigation }) {
-  const user = route.params.userID;
-  const media = route.params.mediaID;
+const WriteReview = (route, navigation) => {
+  const { user } = useContext(UserAuthContext);
+  const currentUser = user.toJSON();
+  const media = route.route.params.id;
+  const name = route.route.params.title;
+  const [reviewDetail, setReview] = useState('');
+  const [rate, setRate] = useState(0);
+  const [userFullName, setUserName] = useState('');
 
   const save = () => {
-    firestore.collection('users');
+    firestore.collection('users').doc(currentUser.uid)
+    .get()
+    .then(doc => {
+      setUserName(doc.data().fullName);
+    });
+    const data = {
+      mediaID: media,
+      userName: userFullName,
+      rating: rate,
+      review: reviewDetail
+    }
+    firestore.collection('reviews')
+    .doc(mediaID).collection('posts')
+    .add(data).then(() => {
+      alert('Your review is saved!');
+    })
   }
   return (
     <View style={styles.container}>
-      <View style={styles.reviewBodyStack}>
+      <View style ={styles.box}>
+        <Text style ={styles.reviewTitle}>Review</Text>
+      </View>
+      <View style = {styles.body}>
+        <View style={styles.mediaName}>
+              <Text style = {styles.name}>
+                {name}
+              </Text>
+        </View>
+        <View style = {styles.box}>
+          <Text style={styles.rating}>Rating</Text>
+            <View style={styles.ratingBoxStack}>
+              <View style={styles.ratingBox}></View>
+                <TextInput
+                  placeholder=""
+                  keyboardAppearance="default"
+                  maxLength={5}
+                  numberOfLines={1}
+                  multiline={true}
+                  spellCheck={true}
+                  selectionColor="rgba(230, 230, 230,1)"
+                  placeholderTextColor="rgba(0,0,0,1)"
+                  style={styles.ratingInput}
+                ></TextInput>
+              </View>
+            <View>
+          </View>
+          <View style={styles.enterReview}>
+              <View style={styles.reviewInstructionStack}>
+                <Text style={styles.reviewInstruction}>
+                  We recommend you write the review in your selected language.
+                  Include what you liked/disliked and whether you would
+                  recommend the movie
+                </Text>
+              </View>
+              <View style={styles.reviewBox}>
+                <TextInput
+                  placeholder=""
+                  keyboardAppearance="default"
+                  maxLength={200}
+                  numberOfLines={5}
+                  multiline={true}
+                  spellCheck={true}
+                  placeholderTextColor="rgba(0,0,0,1)"
+                  selectionColor="rgba(255,255,255,1)"
+                  style={styles.reviewInput}
+                ></TextInput>
+              </View>
+          </View>
+        </View>
+        <TouchableOpacity styles = {styles.press}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25,  marginLeft: 30, alignSelf : 'flex-start'}}>
+            <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/changeProfile.png")} />
+            <Text> Save Media </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+{/*       <View>
         <View style={styles.reviewBody}>
           <View style={styles.body}>
             <View style={styles.mediaName}>
@@ -26,7 +105,7 @@ function WriteReview({ route, navigation }) {
               <View style={styles.ratingBoxStack}>
                 <View style={styles.ratingBox}></View>
                 <TextInput
-                  placeholder="Rating"
+                  placeholder=""
                   keyboardAppearance="default"
                   maxLength={5}
                   numberOfLines={1}
@@ -49,7 +128,7 @@ function WriteReview({ route, navigation }) {
               </View>
               <View style={styles.reviewBox}>
                 <TextInput
-                  placeholder="Review Here"
+                  placeholder=""
                   keyboardAppearance="default"
                   maxLength={200}
                   numberOfLines={5}
@@ -64,9 +143,7 @@ function WriteReview({ route, navigation }) {
           </View>
         </View>
         <Text style={styles.review}>Review</Text>
-        <BackArrow style={styles.backArrow}></BackArrow>
       </View>
-      <Homebar style={styles.homebar}></Homebar>
       <View style={styles.saveReviewButton}>
         <View style={styles.saveBody}>
           <View style={styles.saveIconRow}>
@@ -75,13 +152,15 @@ function WriteReview({ route, navigation }) {
           </View>
         </View>
       </View>
+    </View> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignItems: "center"
   },
   reviewBody: {
     top: 60,
@@ -90,70 +169,81 @@ const styles = StyleSheet.create({
     height: 492,
     position: "absolute"
   },
+  press: {
+    backgroundColor: "rgba(217,240,255,1)",
+    borderRadius: 100,
+    shadowColor: "rgba(0,0,0,1)",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    width: 94,
+    height: 142,
+    marginRight: 25
+  }, 
+  box: {
+    marginTop: 10
+  },
   body: {
     width: 319,
-    height: 492,
+    height: 525,
     backgroundColor: "rgba(217,240,255,0.75)",
-    borderRadius: 70
+    borderRadius: 70,
+    alignSelf: "center", 
+    alignItems: "center"
   },
   mediaName: {
-    width: 149,
-    height: 66,
-    marginTop: 2,
-    marginLeft: 87
+   alignItems: "center"
   },
   name: {
-    fontFamily: "OpenSans_600SemiBold",
-    color: "rgba(0,107,166,1)",
-    fontSize: 24,
-    textAlign: "center",
-    marginLeft: 39
+    fontFamily: "OpenSans_700Bold",
+    color: "rgba(255,134,0,1)",
+    fontSize: 20,
+    alignSelf: "center",
+    marginTop: 25
   },
   nameOfMedia: {
     fontFamily: "OpenSans_400Regular",
     color: "#121212",
-    height: 33,
+    height: 50,
     width: 149,
     fontSize: 20,
-    textAlign: "center"
+    alignSelf: "center"
   },
   enterRating: {
     width: 295,
-    height: 85,
-    marginLeft: 14
+    height: 85
   },
   rating: {
-    fontFamily: "OpenSans_600SemiBold",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(0,107,166,1)",
-    fontSize: 24,
-    textAlign: "center",
-    marginLeft: 110
+    fontSize: 20,
+    alignSelf: "center",
+    marginBottom: 10
   },
   ratingBox: {
-    top: 0,
-    left: 0,
     width: 295,
     height: 40,
-    position: "absolute",
     borderWidth: 6,
     borderColor: "rgba(0,107,166,1)",
     borderRadius: 74,
     borderStyle: "solid",
-    backgroundColor: "rgba(255,255,255,1)"
+    backgroundColor: "rgba(255,255,255,1)",
+    alignSelf: "center",
+    marginLeft: 10
   },
   ratingInput: {
-    top: 7,
-    left: 26,
-    position: "absolute",
     fontFamily: "OpenSans_400Regular",
     color: "#121212",
-    fontSize: 20,
-    width: 242,
-    height: 45
+    fontSize: 20
   },
   ratingBoxStack: {
     width: 295,
-    height: 52
+    height: 52,
+    marginBottom: 10 
   },
   enterReview: {
     width: 295,
@@ -162,26 +252,19 @@ const styles = StyleSheet.create({
     marginLeft: 12
   },
   reviewInstruction: {
-    top: 34,
-    left: 0,
-    position: "absolute",
     fontFamily: "OpenSans_400Regular",
     color: "#121212",
     height: 109,
     width: 326,
     fontSize: 18,
-    textAlign: "center"
+    textAlign: "center",
+    marginTop: 5
   },
   yourReview: {
-    top: 0,
-    left: 105,
-    position: "absolute",
-    fontFamily: "OpenSans_600SemiBold",
+    fontFamily: "OpenSans_700Bold",
     color: "rgba(0,107,166,1)",
-    height: 36,
-    width: 189,
-    fontSize: 24,
-    textAlign: "left"
+    fontSize: 20,
+    alignSelf: "center"
   },
   reviewInstructionStack: {
     width: 326,
@@ -191,33 +274,31 @@ const styles = StyleSheet.create({
   },
   reviewBox: {
     width: 295,
-    height: 188,
+    height: 225,
     borderWidth: 6,
     borderColor: "rgba(0,107,166,1)",
     borderRadius: 74,
     borderStyle: "solid",
     backgroundColor: "rgba(255,255,255,1)",
-    marginTop: 143
+    marginTop: 120
   },
   reviewInput: {
     fontFamily: "OpenSans_400Regular",
     color: "#121212",
     fontSize: 20,
     width: 250,
-    height: 137,
+    height: 175,
     marginTop: 30,
     marginLeft: 28
   },
-  review: {
-    top: 0,
-    position: "absolute",
+  reviewTitle: {
     fontFamily: "OpenSans_800ExtraBold",
     color: "rgba(27,6,94,1)",
     height: 68,
     width: 267,
     fontSize: 48,
     textAlign: "center",
-    left: 28
+    marginBottom: 10
   },
   backArrow: {
     position: "absolute",
