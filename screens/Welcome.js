@@ -15,7 +15,6 @@ function Welcome({ navigation }) {
   }
   
   const signOut = () => {
-    console.log('log out');
     auth.signOut();
   }
   
