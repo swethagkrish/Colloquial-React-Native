@@ -6,6 +6,7 @@ import WriteReview from '../screens/WriteReview';
 import Review from '../screens/Review';
 import SelectLanguage from '../screens/SelectLanguage';
 import SelectedMedia from '../screens/SelectedMedia';
+import Bookmarks from '../screens/Bookmarks';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function MediaNavigation() {
             <Stack.Screen name='SelectedMedia' component={SelectedMedia} />
             <Stack.Screen name='Review' component={Review} />
             <Stack.Screen name='WriteReview' component={WriteReview} />
+            <Stack.Screen name='Bookmarks' component={Bookmarks} />
         </Stack.Navigator>
     )
 }

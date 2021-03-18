@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GiftedChat, Bubble, Send, SystemMessage } from 'react-native-gifted-chat';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Image } from 'react-native';
 import { firestore } from '../components/Firebase/method';
 import { UserAuthContext } from '../navigation/UserAuthProvider';
 
@@ -9,6 +9,10 @@ export default function Chat({route}) {
   const { thread } = route.params;
   const { user } = useContext(UserAuthContext);
   const currentUser = user.toJSON();
+
+  useEffect(() => {
+
+  })
 
   async function sendMessage(messages) {
     const text = messages[0].text;
@@ -40,10 +44,10 @@ export default function Chat({route}) {
   }
 
   useEffect(() => {
-    const messagesListener = firestore()
-      .collection('THREADS')
+    const messagesListener = firestore
+      .collection('threads')
       .doc(thread._id)
-      .collection('MESSAGES')
+      .collection('messages')
       .orderBy('createdAt', 'desc')
       .onSnapshot(querySnapshot => {
         const messages = querySnapshot.docs.map(doc => {
@@ -79,12 +83,13 @@ export default function Chat({route}) {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: '#6646ee'
+            backgroundColor: '#006BA6'
           }
         }}
         textStyle={{
           right: {
-            color: '#fff'
+            color: '#D9F0FF',
+            fontFamily: 'OpenSans_400Regular'
           }
         }}
       />
@@ -160,13 +165,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   systemMessageWrapper: {
-    backgroundColor: '#6646ee',
+    backgroundColor: '#006BA6',
     borderRadius: 4,
     padding: 5
   },
   systemMessageText: {
+    fontFamily: "OpenSans_600SemiBold",
     fontSize: 14,
-    color: '#fff',
-    fontWeight: 'bold'
+    color: '#ffffff'
   }
 });

@@ -13,9 +13,9 @@ function ChatNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen name='Chatroom' component={Chatroom} options={({ navigation }) => ({
-          headerRight: () => (
+          headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.navigate('AddRoom')}>
-              <Image source={require("../assets/icons/add.png")}/>
+              <Image style = {{width: 60, height: 60, marginLeft: 30, marginBottom: 15}} source={require("../assets/icons/add.png")}/>
             </TouchableOpacity>
             )
       })}

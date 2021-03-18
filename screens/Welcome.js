@@ -32,9 +32,8 @@ function Welcome({ navigation }) {
           <Text style = {styles.spotlightTitle}> Spotlighted Media</Text>
         </View>
         <Card containerStyle = {styles.bookmark}>
-          <Card.Title style = {{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", size: 18}}>Media Name</Card.Title>
-          <Card.Image style = {{height: 150, width: 200}}>
-            
+          <Card.Title style = {{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", fontSize: 18}}>Nanutria: El ciclo de la vida</Card.Title>
+          <Card.Image style = {{height: 150, width: 200}} source = {require("../assets/spotlight.jpg")}>
           </Card.Image>
         </Card>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: '0%',alignSelf: 'flex-start' }}>
@@ -84,8 +83,9 @@ function Welcome({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 50,
-    alignItems: "center"
+    height: 700,
+    alignItems: "center",
+    marginTop: 50
   },
   button: {
     width: 325,

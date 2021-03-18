@@ -10,28 +10,35 @@ function Profile({navigation}) {
   const currentUser = user.toJSON();
   //const email = firestore.collection('users').doc(user.uid).doc('email');
   const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  //const [password, setPassword] = useState('');
+  const [initials, setInitials] = useState('');
 
-  firestore.collection('users').doc(currentUser.uid)
+  const ref = firestore.collection('users').doc(currentUser.uid);
+
+  useEffect(() => {
+    ref
     .get()
     .then(doc => {
       setName(doc.data().fullName);
     });
-
-  const fullName = name.split(' ');
-  const firstName = fullName[0];
-  const lastName = fullName[1];
-  const initials = (firstName[0] || "") + (lastName[0] || "");
-  //const initials = 'UH';
+    if (name) {
+      const fullName = name.split(' ');
+      const firstName = fullName[0];
+      const lastName = fullName[1];
+      setInitials((firstName[0] || "") + (lastName[0] || ""));
+    }
+  })
 
   return (
     <View style={styles.container}>
-      <Avatar
-					size="xlarge"
-					rounded
-					title={initials}
-					overlayContainerStyle={{ backgroundColor: '#FF8600' }}
-				/>
+      <View style = {styles.avatar}>
+        <Avatar
+            size="xlarge"
+            rounded
+            title={initials}
+            overlayContainerStyle={{ backgroundColor: '#FF8600'}}
+          />
+        </View>
       <Text style = {styles.title}>{name}</Text>
       <View style = {styles.body}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: 50, alignSelf : 'flex-start'}}>
@@ -52,7 +59,7 @@ function Profile({navigation}) {
           <Text style = {styles.labels}>March 12th, 1998</Text>
         </View>
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginLeft: 50, alignSelf : 'flex-start'}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25, marginLeft: 50, alignSelf : 'flex-start'}}>
         <TouchableOpacity style = {styles.press}>
           <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/changeProfile.png")} />
           <Text style = {styles.labelsC}>Change</Text>
@@ -250,6 +257,13 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0
+  },
+  avatar: {
+    width: 100, 
+    height: 100,
+    marginTop: 40,
+    marginBottom: 60,
+    alignItems: "center"
   },
   garbage: {
     color: "rgba(0,107,166,1)",

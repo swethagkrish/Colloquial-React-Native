@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
 import { firestore } from '../components/Firebase/method';
-import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 export default function AddRoom({navigation}) {
@@ -10,16 +9,17 @@ export default function AddRoom({navigation}) {
 
     function create() {
         if (room.length > 0) {
+            var message = 'You have joined ' + room + '.';
             firestore.collection('threads').add({
                 name: room,
                 latestMessage: {
-                    text: 'You have joined ${room}.',
+                    text: message,
                     createdAt: new Date().getTime()
                 }
             })
             .then(docRef => {
                 docRef.collection('messages').add({
-                    text: 'You have joined ${room}.',
+                    text: message,
                     createdAt: new Date().getTime(),
                     system: true
                 });
@@ -34,18 +34,34 @@ export default function AddRoom({navigation}) {
             <IconButton
               icon='close-circle'
               size={36}
-              color='#6646ee'
+              color='#006BA6'
               onPress={() => navigation.goBack()}
             />
           </View>
           <View style={styles.innerContainer}>
             <Title style={styles.title}>Create a new chat room</Title>
-            <FormInput
+            {/*<FormInput
               labelName='Room Name'
               value={room}
               onChangeText={text => setRoom(text)}
               clearButtonMode='while-editing'
-            />
+            />*/}
+            <View style={styles.ratingBox}>
+              <TextInput
+                  placeholder=""
+                  keyboardAppearance="default"
+                  maxLength={10}
+                  numberOfLines={1}
+                  multiline={true}
+                  spellCheck={true}
+                  selectionColor="rgba(230, 230, 230,1)"
+                  placeholderTextColor="rgba(0,0,0,1)"
+                  style={styles.ratingInput}
+                  value={room}
+                  onChangeText={(text) => setRoom(text)}
+              ></TextInput>
+            </View>
+            
             <FormButton
               title='Create'
               modeValue='contained'
@@ -74,10 +90,31 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     title: {
+      fontFamily: "OpenSans_600SemiBold",
       fontSize: 24,
-      marginBottom: 10
+      marginBottom: 10,
+      color: "#006BA6"
     },
     buttonLabel: {
-      fontSize: 22
+      fontFamily: "OpenSans_700Bold",
+      fontSize: 22, 
+      color: "#006BA6"
+    },
+    ratingInput: {
+      fontFamily: "OpenSans_400Regular",
+      color: "#121212",
+      fontSize: 16,
+      marginLeft: 15
+    },
+    ratingBox: {
+      width: 295,
+      height: 50,
+      borderWidth: 6,
+      borderColor: "rgba(0,107,166,1)",
+      borderRadius: 74,
+      borderStyle: "solid",
+      backgroundColor: "rgba(255,255,255,1)",
+      alignSelf: "center",
+      marginLeft: 10
     }
   });

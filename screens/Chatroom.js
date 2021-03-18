@@ -1,10 +1,10 @@
 import React, { useState, useEffect} from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { List, Divider } from 'react-native-paper';
 import FormButton from '../components/FormButton';
 import { firestore } from '../components/Firebase/method';
 
-export default function Chatroom() {
+export default function Chatroom({navigation}) {
     const [thread, setThread] = useState([]);
 
     useEffect(() => {
@@ -16,7 +16,6 @@ export default function Chatroom() {
                   _id: documentSnapshot.id,
                   // give defaults
                   name: '',
-      
                   latestMessage: {
                     text: ''
                   },

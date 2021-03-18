@@ -1,9 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, StatusBar, Text, TouchableOpacity, Button, FlatList, Image, ScrollView} from "react-native";
-import { Entypo } from "@expo/vector-icons";
-import {MaterialCommunityIconsIcon} from "@expo/vector-icons";
-import {FontAwesomeIcon} from "@expo/vector-icons";
-import {SimpleLineIconsIcon} from "@expo/vector-icons";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 //import Homebar from "../components/Homebar";
@@ -85,17 +81,12 @@ function Filter({ route, navigation }) {
 
   const filterMedia = () => {
     navigation.navigate('FilteredMedia', {lang: language, gen: genre, mediaSelected: media, selectedSort: sort});
-  }
-
-  /*navigation.setOptions({
-    headerBackImage: () => (
-      <Entypo name="arrow-left" size={24} color="black" />
-    )
-  })*/
-  
+  };
 
    const renderItem = ({ item }) => (
-    <TouchableHighlight style={styles.filterButton} onPress={() => {setMedia(media => [...media, item.tag])}}>
+    <TouchableHighlight style={styles.filterButton} onPress={() => {
+      setMedia(media => [...media, item.tag])
+      }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: '0%',alignSelf: 'flex-start', justifyContent: 'center'}}>
           <Image style={{ width: 40, height: 40, alignSelf: "flex-start", marginTop: 10, marginLeft: 8}} source={item.img} />
           <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", marginTop: 22, marginLeft: 6, fontSize: 16}}>{item.name}</Text>
@@ -104,7 +95,7 @@ function Filter({ route, navigation }) {
     );
 
     const renderGenre = ({item}) => (
-        <TouchableHighlight style={styles.filterButton} onPress={() => {setGenre(genre => [...genre, item.tag])}}>
+      <TouchableHighlight style={styles.filterButton} onPress={() => {setGenre(genre => [...genre, item.tag])}}>
          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: '0%',alignSelf: 'flex-start', justifyContent: 'center'}}>
           <Image style={{ width: 40, height: 40, alignSelf: "flex-start", marginTop: 10, marginLeft: 8}} source={item.img} />
           <Text style={{fontFamily: "OpenSans_700Bold", color: "#FFFFFF", marginTop: 22, marginLeft: 6, fontSize: 16}}>{item.name}</Text>

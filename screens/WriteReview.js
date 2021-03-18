@@ -1,31 +1,29 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, View, Text, TextInput, Alert, TouchableOpacity, Image} from "react-native";
-import BackArrow from "../components/stuff/BackArrow";
-import Homebar from "../components/stuff/Homebar";
-import Icon from "react-native-vector-icons/Entypo";
 import { firestore } from '../components/Firebase/method';
 import { UserAuthContext } from '../navigation/UserAuthProvider';
 
 const WriteReview = (route, navigation) => {
   const { user } = useContext(UserAuthContext);
   const currentUser = user.toJSON();
-  const media = route.route.params.id;
+  const mediaID = route.route.params.id;
   const name = route.route.params.title;
-  const [reviewDetail, setReview] = useState('');
+  const [review, setReview] = useState('');
   const [rate, setRate] = useState(0);
-  const [userFullName, setUserName] = useState('');
+  const [userName, setUserName] = useState('');
 
   const save = () => {
     firestore.collection('users').doc(currentUser.uid)
     .get()
     .then(doc => {
       setUserName(doc.data().fullName);
+      console.log(userName);
     });
     const data = {
-      mediaID: media,
-      userName: userFullName,
-      rating: rate,
-      review: reviewDetail
+      mediaID,
+      userName,
+      rate,
+      review
     }
     firestore.collection('reviews')
     .doc(mediaID).collection('posts')
@@ -47,21 +45,22 @@ const WriteReview = (route, navigation) => {
         <View style = {styles.box}>
           <Text style={styles.rating}>Rating</Text>
             <View style={styles.ratingBoxStack}>
-              <View style={styles.ratingBox}></View>
+              <View style={styles.ratingBox}>
                 <TextInput
                   placeholder=""
                   keyboardAppearance="default"
-                  maxLength={5}
+                  maxLength={10}
                   numberOfLines={1}
                   multiline={true}
                   spellCheck={true}
                   selectionColor="rgba(230, 230, 230,1)"
                   placeholderTextColor="rgba(0,0,0,1)"
                   style={styles.ratingInput}
+                  value={rate}
+                  onChangeText={(text) => setRate(text)}
                 ></TextInput>
               </View>
-            <View>
-          </View>
+            </View>
           <View style={styles.enterReview}>
               <View style={styles.reviewInstructionStack}>
                 <Text style={styles.reviewInstruction}>
@@ -81,14 +80,16 @@ const WriteReview = (route, navigation) => {
                   placeholderTextColor="rgba(0,0,0,1)"
                   selectionColor="rgba(255,255,255,1)"
                   style={styles.reviewInput}
+                  value={review}
+                  onChangeText={text => setReview(text)}
                 ></TextInput>
               </View>
           </View>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => save()}>
           <View style = {styles.press}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25,  marginLeft: 30, alignSelf : 'flex-start'}}>
-              <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/save.png")} />
+              <Image style={{ width: 40, height: 40, marginLeft: 40, alignSelf: "center"}} source = {require("../assets/emojis/save.png")} />
               <Text style = {styles.saveReview}> Save Review </Text>
             </View>
           </View>
@@ -172,8 +173,11 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
   press: {
+    width: 325,
+    height: 80,
     backgroundColor: "rgba(217,240,255,1)",
-    borderRadius: 100,
+    borderRadius: 82,
+    marginBottom: "3%",
     shadowColor: "rgba(0,0,0,1)",
     shadowOffset: {
       width: 3,
@@ -182,9 +186,10 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowOpacity: 1,
     shadowRadius: 0,
-    width: 94,
-    height: 142,
-    marginRight: 25
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignSelf : 'center', 
+    marginTop: 65
   }, 
   box: {
     marginTop: 10
@@ -240,7 +245,8 @@ const styles = StyleSheet.create({
   ratingInput: {
     fontFamily: "OpenSans_400Regular",
     color: "#121212",
-    fontSize: 20
+    fontSize: 20,
+    marginLeft: 15
   },
   ratingBoxStack: {
     width: 295,
@@ -352,7 +358,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 20,
     marginTop: 5, 
-    marginLeft: 70
+    marginLeft: 20
   },
   saveIconRow: {
     height: 44,

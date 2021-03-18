@@ -81,7 +81,7 @@ function FilteredMedia({ route, navigation }) {
       imageLink = link.slice(0, 4) + 's' + link.slice(4);
     }
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('SelectedMedia', {media: item})}>
+      <TouchableOpacity onPress={() => navigation.navigate('SelectedMedia', {media: item, lang: selectLanguage})}>
          <View style = {styles.buttons} >
           <Image
             style={{ width: 100, height: 130, alignSelf: "center", marginTop: 20}}

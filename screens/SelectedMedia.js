@@ -1,16 +1,18 @@
 import React, { Component, useContext, useEffect, useState } from "react";
-import UserAuthContext from "../navigation/UserAuthProvider"
+import { UserAuthContext } from "../navigation/UserAuthProvider"
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Button } from 'react-native-elements'
-import { firestore } from '../components/Firebase/method'
+import { firestore } from '../components/Firebase/method';
 
 const SelectedMedia = (route, navigation) => {
   const media = route.route.params.media;
+  const lang = route.route.params.lang;
+  const { user } = useContext(UserAuthContext);
+  const currentUser = user.toJSON();
 
-  const save = () => {
-    //firestore.collection('users').doc(currentUser.uid).doc('bookmarks').add({image: media.image, name: media.title});
-    console.log('save');
-    route.navigation.navigate('Bookmarks');
+  function save() {
+    firestore.collection('users').doc(currentUser.uid).collection('bookmarks').add({language: lang, image: media.image, name: media.title});
+    alert('You have saved this media!');
   }
   
   return (
@@ -28,7 +30,7 @@ const SelectedMedia = (route, navigation) => {
           <Text style = {styles.summaryText}> No rating available </Text>
         </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginLeft: 50, alignSelf : 'flex-start'}}>
-        <TouchableOpacity style = {styles.press}  onPress={() => {route.navigation.navigate('Review', {id: media.id})}}> 
+        <TouchableOpacity style = {styles.press}  onPress={() => {route.navigation.navigate('Review', {id: media.id, title: media.title})}}> 
           <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/star.png")} />
           <Text style = {styles.labels}>View</Text>
           <Text style = {styles.labelA}>Rating</Text>
@@ -38,7 +40,7 @@ const SelectedMedia = (route, navigation) => {
           <Text style = {styles.labels}>Write</Text>
           <Text style = {styles.labelA}>Review</Text>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.press} onPress={save}> 
+        <TouchableOpacity style = {styles.press} onPress={() => save()}> 
           <Image style={{ width: 40, height: 40, marginTop: 20, alignSelf: "center"}} source = {require("../assets/emojis/bookmark.png")} />
           <Text style = {styles.labels}>Bookmark </Text>
         </TouchableOpacity>

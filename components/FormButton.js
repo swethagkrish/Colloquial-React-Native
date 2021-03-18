@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   buttonContainer: {
-    width: width / 2,
-    height: height / 15
+    width: 325,
+    height: 80,
+    backgroundColor: "#D9F0FF"
   }
 });

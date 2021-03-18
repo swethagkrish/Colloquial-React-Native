@@ -132,7 +132,6 @@ export default function SignUp({navigation}) {
             .then((response) => {
                 const uid = response.user.uid
                 const data = {
-                    id: uid,
                     fullName,
                     email,
                 };
