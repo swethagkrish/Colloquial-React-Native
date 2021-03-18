@@ -108,7 +108,7 @@ export default function Chat({route}) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <Image source={require('../assets/icons/send.png')} />
+          <Image style = {{height: 40, width: 40 }}source={require('../assets/icons/send.png')} />
         </View>
       </Send>
     );

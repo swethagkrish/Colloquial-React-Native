@@ -49,7 +49,7 @@ function Bookmarks({ route, navigation }) {
         })
       })
     }
-  });
+  }, [language]);
   const data = [
     {
       name: "Germany",

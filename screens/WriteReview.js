@@ -12,13 +12,14 @@ const WriteReview = (route, navigation) => {
   const [rate, setRate] = useState(0);
   const [userName, setUserName] = useState('');
 
-  const save = () => {
+  if(userName.length == 0) {
     firestore.collection('users').doc(currentUser.uid)
     .get()
     .then(doc => {
       setUserName(doc.data().fullName);
-      console.log(userName);
     });
+  }
+  const save = () => {
     const data = {
       mediaID,
       userName,

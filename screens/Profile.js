@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Button, Avatar } from 'react-native-elements'
 import { UserAuthContext } from '../navigation/UserAuthProvider';
 import { firestore, auth } from '../components/Firebase/method';
@@ -30,7 +30,7 @@ function Profile({navigation}) {
   })
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={{alignItems: "center", marginTop: 50}}>
       <View style = {styles.avatar}>
         <Avatar
             size="xlarge"
@@ -76,7 +76,7 @@ function Profile({navigation}) {
          <Text style = {styles.labelsD}>Levels</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
     /*<View style={styles.container}>
       <View style={styles.changePasswordButtonRow}>
         <View style={styles.changePasswordButton}>

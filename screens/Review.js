@@ -64,7 +64,7 @@ const Review = ({ route, navigation }) => {
             data={posts}
             renderItem={renderItem}
             keyExtractor={item => item.id}
-            numColumns={2}
+            numColumns={1}
             contentContainerStyle={{ paddingVertical: 10 }}
           />
       </View>

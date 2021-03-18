@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { Card } from 'react-native-elements';
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Ionicons } from '@expo/vector-icons';
@@ -20,7 +20,7 @@ function Welcome({ navigation }) {
   }
   
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={{marginTop: 50, alignItems: "center"}}>
       <Text style = {styles.text}>Welcome</Text>
       <View style = {styles.notificationBody}>
         <Text style = {styles.notifications} >Notifications</Text>
@@ -76,7 +76,7 @@ function Welcome({ navigation }) {
         </View>
         </View>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
