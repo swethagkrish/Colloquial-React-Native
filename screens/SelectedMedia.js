@@ -16,7 +16,7 @@ const SelectedMedia = (route, navigation) => {
   }
   
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={{alignItems: "center"}}>
        <Text style = {styles.title}>{media.title}</Text>
         <View style = {styles.body}> 
           <Image style={{ width: 260, height: 148, marginTop: 40,alignSelf: "center"}} source={{uri: media.image}} />
@@ -45,7 +45,7 @@ const SelectedMedia = (route, navigation) => {
           <Text style = {styles.labels}>Bookmark </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

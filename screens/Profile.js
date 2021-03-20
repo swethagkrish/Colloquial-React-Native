@@ -30,7 +30,7 @@ function Profile({navigation}) {
   })
 
   return (
-    <ScrollView contentContainerStyle={{alignItems: "center", marginTop: 50}}>
+    <ScrollView contentContainerStyle={{alignItems: "center", marginTop: 30}}>
       <View style = {styles.avatar}>
         <Avatar
             size="xlarge"

@@ -77,7 +77,6 @@ const WriteReview = (route, navigation) => {
                   maxLength={200}
                   numberOfLines={5}
                   multiline={true}
-                  spellCheck={true}
                   placeholderTextColor="rgba(0,0,0,1)"
                   selectionColor="rgba(255,255,255,1)"
                   style={styles.reviewInput}

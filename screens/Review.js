@@ -14,9 +14,6 @@ const Review = ({ route, navigation }) => {
     .get()
     .then(snapshot => {
       snapshot.forEach(doc => {
-        /*const userName = doc.data().userName;
-        const rate = doc.data().rate;
-        const reviewDetail = doc.data().review;*/
         const data = {
           id: doc.id,
           user: doc.data().userName,
@@ -26,16 +23,25 @@ const Review = ({ route, navigation }) => {
         setPost(post => [...post, data]);
       })
     })
-  })
+  }, []);
 
   let posts = post.filter( (ele, ind) => ind === post.findIndex( elem => elem.id === ele.id));
-  /*const name = posts[0].user.split(' ');
-  const firstName = name[0];
-  const lastName = name[1];
-  const initials = (firstName[0] || "") + (lastName[0] || "");*/
-  const initials = 'UH';
+
+  /*if(posts.length > 0) {
+    const name = posts[0].user.split(' ');
+    const firstName = name[0];
+    const lastName = name[1];
+    initials = (firstName[0] || "") + (lastName[0] || "");
+  }*/
+  
+  //const initials = 'UH';
 
   const renderItem = ({ item }) => {
+    const name = item.user.split(' ');
+    const firstName = name[0];
+    const lastName = name[1];
+    const initials = (firstName[0] || "") + (lastName[0] || "");
+    console.log(initials);
     return (
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf : 'flex-start', marginLeft: 20, marginTop: 10}}>
         <View style = {{marginTop: 30, marginRight: 20}}>

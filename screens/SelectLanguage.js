@@ -9,32 +9,32 @@ function SelectLanguage({ navigation }) {
 
   const data = [
     {
-      name: "Germany",
+      name: "German",
       img: require("../assets/flags/germany.png"),
       language: 'german'
     },
     {
-      name: "Portugal",
+      name: "Portuguese",
       img: require("../assets/flags/portugal.png"),
       language: 'portuguese'
     }, 
     {
-      name: "France",
+      name: "French",
       img: require("../assets/flags/france.png"),
       language: 'french'
     }, 
     {
-      name: "Spain",
+      name: "Spanish",
       img: require("../assets/flags/spain.png"),
       language: 'spanish'
     }, 
     {
-      name: "Italy",
+      name: "Italian",
       img: require('../assets/flags/italy.png'),
       language: 'italian'
     }, 
     {
-      name: "Netherlands",
+      name: "Dutch",
       img: require("../assets/flags/netherlands.png"),
       language: 'dutch'
     }
