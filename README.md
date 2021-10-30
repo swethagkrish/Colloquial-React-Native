@@ -1,2 +1,5 @@
+Description: Colloquial is a mobile application that provides language learners supplemental material in their language learning journey. This material includes books, songs, movies, and tv shows that allow language learners to experience the language colloquially. Media is available in Spanish, German, Italian, French, Dutch and Portuguese. Users can filter media based on genre and bookmark media, which can also be sorted by most recent and in alphabetical order. Additionally, users can read and write reviews about media. They can also chat with other users and make changes to their profile, such as changing their password and deleting. The goal of Colloquial is to provide access to media that will interest the reader in continuing their language learning journey as well as give them experience with language as it exists in the real world. 
 
-Link to the Demo: https://www.youtube.com/watch?v=5oo97ZDay-o&feature=youtu.be&ab_channel=MinhUy%C3%AAnHo%C3%A0ng
+Built with: React Native (Frontend) and Firebase (Backend) <br/>
+Link to the Demo: https://www.youtube.com/watch?v=5oo97ZDay-o&feature=youtu.be&ab_channel=MinhUy%C3%AAnHo%C3%A0ng <br/>
+Current Status: Developing a Web application and working on development for Android with Android Studio <br/>
