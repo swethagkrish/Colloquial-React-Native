@@ -2,4 +2,5 @@ Description: Colloquial is a mobile application that provides language learners 
 
 Built with: React Native (Frontend) and Firebase (Backend) <br/>
 Link to the Demo: https://www.youtube.com/watch?v=5oo97ZDay-o&feature=youtu.be&ab_channel=MinhUy%C3%AAnHo%C3%A0ng <br/>
-Current Status: Developing a Web application and working on development for Android with Android Studio <br/>
+Current Status: Developed a Web application. Working on development for Android with Android Studio <br/>
+Link to Web Application: https://github.com/minhuyen-github/Colloquial-Website
