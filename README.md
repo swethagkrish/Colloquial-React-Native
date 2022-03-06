@@ -6,9 +6,12 @@ Goal: The goal of Colloquial is to provide access to media that will interest th
  
 Built with: React Native (Frontend) and Firebase (Backend) <br/>
 
+
 Link to the Demo: https://www.youtube.com/watch?v=5oo97ZDay-o&feature=youtu.be&ab_channel=MinhUy%C3%AAnHo%C3%A0ng <br/>
 
-Current Status: Developed a Web application. Working on development for Android with Android Studio <br/>
+Link to the Write-Up: https://docs.google.com/document/d/1d6OQKsI5DkWuverIDv2dExLHrPD-s6COxCU2x_Y4Iqk/edit <br/>
+
+Current Status: Developed a Web application with React Native. Planning on revamping with new focus on more travel<br/>
 
 Link to Web Application: https://github.com/minhuyen-github/Colloquial-Website <br/>
 
